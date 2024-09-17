@@ -7,10 +7,7 @@ import {
 } from "@remix-run/react";
 import shopify from '~/shopify.server';
 import {json, LoaderFunctionArgs} from '@remix-run/node';
-import {AppProvider} from '@shopify/shopify-app-remix/react';
 import {useEffect} from "react";
-import type {User} from "~/routes/Core/services/userServices";
-
 export async function loader({request}: LoaderFunctionArgs) {
   const {admin} = await shopify.authenticate.admin(request);
   const response = await admin.graphql(
