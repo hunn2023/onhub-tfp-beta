@@ -64,15 +64,19 @@ const Apphomepage = () => {
   const handleSignUp = () => {
     setSignUpNow(!signUpNow);
   }
-  
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     event.stopPropagation();
 
     try {
+
       const shopifyStoreId = localStorage.getItem("ShopifyStoreId");
       const nameStore = localStorage.getItem("NameStore");
       const domainWebShopify = localStorage.getItem("WebsiteUrl");
+      console.log("ShopifyStoreId:" + ShopifyStoreId);
+      console.log("NameStore:" + nameStore);
+      console.log("domainWebShopify:" + domainWebShopify);
       const response = await fetch(configOnHub.HOST_ONHUB_BE + '/identity/api/auth/sign-in', {
         method: 'POST',
         headers: {
