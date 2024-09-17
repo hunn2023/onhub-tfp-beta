@@ -23,10 +23,10 @@ export default function Dashboard() {
 
   const changeHandlerUrl = (userId: string, shopifyStoreId: string, showUrlConfigurationList: boolean) => {
     if (showUrlConfigurationList) {
-       const shopInfo = localStorage.getItem('ShopInfo');
-       const parsedStoreName = shopInfo ? JSON.parse(shopInfo) : null;
-       
-      return `${baseUrlFe}/configuration/fraud/prevention?user_id=${userId}&shopifyStoreId=${shopifyStoreId}&storeName=${parsedStoreName?.name ?? ""}`;
+      const shopInfo = localStorage.getItem('ShopInfo');
+      const parsedNameStore = shopInfo ? JSON.parse(shopInfo) : null;
+      const encodedNameStore = encodeURIComponent(parsedNameStore?.shop?.name ?? "");
+      return `${baseUrlFe}/configuration/fraud/prevention?user_id=${userId}&shopifyStoreId=${shopifyStoreId}&nameStore=${encodedNameStore}`;
     }
     return `${baseUrlFe}/dashboard?UserId=${userId}&shopifyStoreId=${shopifyStoreId}`;
   };

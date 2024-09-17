@@ -21,18 +21,28 @@ const Apphomepage = () => {
   const [userData, setUserData] = useState<User | null>(null);
   const [ShopifyStoreId, setShopifyStoreId] = useState('');
   const [websiteUrl, setWebsiteUrl] = useState('');
+  const [nameStore, setNameStore] = useState('');
+  const protocolWebsite = "https://"
+
   //const fetcher = useFetcher<typeof action>();
   useEffect(() => {
     let ShopInfo = localStorage.getItem("ShopInfo") ?? "";
+    let localChangeUser = localStorage.getItem('userDataKey');
+
     if (ShopInfo) {
       const shopData = JSON.parse(ShopInfo);
-      localStorage.setItem("ShopifyStoreId", shopData?.shop?.id ?? "")
+      const str = shopData?.shop?.id;
+      const result = str.split('/').pop();
+
+      localStorage.setItem("ShopifyStoreId", result)
       localStorage.setItem("WebsiteUrl", shopData?.shop?.myshopifyDomain ?? "")
+      localStorage.setItem("NameStore", shopData?.shop?.name ?? "")
 
       setShopifyStoreId(localStorage.getItem("ShopifyStoreId") ?? "");
-      setWebsiteUrl(localStorage.getItem("WebsiteUrl") ?? "")
+      setWebsiteUrl(localStorage.getItem("WebsiteUrl") ?? "");
+      setNameStore(localStorage.getItem("NameStore") ?? "");
+
     }
-    let localChangeUser = localStorage.getItem('userDataKey');
     if (localChangeUser) {
       let parentLocalChangeUser = JSON.parse(localChangeUser) as User;
       let dataNow = new Date().getTime();
@@ -60,6 +70,9 @@ const Apphomepage = () => {
     event.stopPropagation();
 
     try {
+      const shopifyStoreId = localStorage.getItem("ShopifyStoreId");
+      const nameStore = localStorage.getItem("NameStore");
+      const domainWebShopify = localStorage.getItem("WebsiteUrl");
       const response = await fetch(configOnHub.HOST_ONHUB_BE + '/identity/api/auth/sign-in', {
         method: 'POST',
         headers: {
@@ -69,13 +82,13 @@ const Apphomepage = () => {
           key: email,
           password: password,
           shopifyStoreId: ShopifyStoreId,
+          websiteUrl : protocolWebsite + domainWebShopify,
+          nameStore : nameStore
         }),
       });
       const data = await response.json();
       if (response.ok) {
         //Update and save ShopifyStoreId and DomainWebShopify
-        const shopifyStoreId = localStorage.getItem("ShopifyStoreId");
-        const domainWebShopify = localStorage.getItem("WebsiteUrl");
         const domainWebShopifyResult = await fetch(configOnHub.HOST_MODULAR_BE + '/modular/api/setting/save-website-shopify', {
           method: 'POST',
           headers: {
@@ -83,7 +96,7 @@ const Apphomepage = () => {
           },
           body: JSON.stringify({
             shopifyStoreId: shopifyStoreId,
-            domainWebShopify: domainWebShopify
+            domainWebShopify: protocolWebsite + domainWebShopify
           }),
         });
         const dataShopifyResult = await domainWebShopifyResult.json();
@@ -103,7 +116,8 @@ const Apphomepage = () => {
   };
 
   const handleChangeAccount = () => {
-    localStorage.clear();
+    localStorage.removeItem('accessTokenKey');
+    localStorage.removeItem('userDataKey');
     setEmail('');
     setPassword('');
     setLoginSuccess(false);
@@ -144,7 +158,8 @@ const Apphomepage = () => {
                           active={signUpNow}
                           handleChange={handleSignUp}
                           initShopifyStoreId={ShopifyStoreId}
-                          initwebsiteUrl={websiteUrl}
+                          initWebsiteUrl={websiteUrl}
+                          initNameStore ={nameStore}
                           showToast={showToast}
                         />
                       </div>
@@ -170,7 +185,8 @@ const Apphomepage = () => {
                       showForgetPassWord={showForgetPassWord}
                       signUpNow={signUpNow}
                       initShopifyStoreId={ShopifyStoreId}
-                      initwebsiteUrl={websiteUrl}
+                      initWebsiteUrl={websiteUrl}
+                      initNameStore ={nameStore}
                       showToast={showToast}
                     />
                   </React.Fragment>

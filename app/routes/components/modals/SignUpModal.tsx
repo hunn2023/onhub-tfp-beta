@@ -9,7 +9,8 @@ interface SignUpModalProps {
   active: boolean;
   handleChange: () => void;
   initShopifyStoreId: string;
-  initwebsiteUrl: string;
+  initWebsiteUrl: string;
+  initNameStore : string;
   showToast: (message: string) => void;
 }
 
@@ -20,7 +21,7 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const roleUser = 'Business'; 
-  const { initShopifyStoreId, initwebsiteUrl } = props;
+  const { initShopifyStoreId, initWebsiteUrl, initNameStore } = props;
 
   useEffect(() => {
     setShowActive(props.active);
@@ -67,7 +68,7 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
     if (!fullName || !email || !phoneNumber || !password || !confirmPassword) {
       isValid = false
     }
-    if (!initShopifyStoreId || !initwebsiteUrl) {
+    if (!initShopifyStoreId || !initWebsiteUrl) {
         isValid = false;
         props.showToast("Shopify Store ID and Website URL cannot be null or undefined.");
     }
@@ -90,7 +91,8 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
               role : roleUser,
               signature: '', 
               shopifyStoreId: initShopifyStoreId, 
-              websiteUrl: initwebsiteUrl
+              websiteUrl: initWebsiteUrl,
+              nameStore : initNameStore
             }
           ),
             

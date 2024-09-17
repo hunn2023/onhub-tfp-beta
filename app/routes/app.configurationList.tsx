@@ -32,9 +32,9 @@ export default function ConfigurationList() {
           if (dataConvert.data.url.includes('setting?adAccountId')) {
 
             const shopInfo = localStorage.getItem('ShopInfo');
-            const parsedStoreName = shopInfo ? JSON.parse(shopInfo) : null;
-
-            setUrl(dataConvert.data.url + `&shopifyStoreId=${parsedDataUser?.shopifyStoreId ?? ""}&storeName=${parsedStoreName?.name ?? ""}`)
+            const parsedNameStore = shopInfo ? JSON.parse(shopInfo) : null;
+            const encodedNameStore = encodeURIComponent(parsedNameStore?.shop?.name ?? "");
+            setUrl(dataConvert.data.url + `&shopifyStoreId=${parsedDataUser?.shopifyStoreId ?? ""}&nameStore=${encodedNameStore}`)
           }
         }
       } catch (error) {

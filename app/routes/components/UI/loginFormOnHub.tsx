@@ -15,7 +15,8 @@ interface LoginFormProps {
   showForgetPassWord: boolean;
   signUpNow: boolean;
   initShopifyStoreId: string;
-  initwebsiteUrl: string;
+  initWebsiteUrl: string;
+  initNameStore : string;
   showToast: (message: string) => void;
 }
 const LoginFormOnHub: React.FC<LoginFormProps> = ({
@@ -29,7 +30,8 @@ const LoginFormOnHub: React.FC<LoginFormProps> = ({
   showForgetPassWord,
   signUpNow,
   initShopifyStoreId,
-  initwebsiteUrl,
+  initWebsiteUrl,
+  initNameStore,
   showToast
 }) => {
   return (
@@ -84,7 +86,8 @@ const LoginFormOnHub: React.FC<LoginFormProps> = ({
             active={signUpNow}
             handleChange={handleSignUp}
             initShopifyStoreId={initShopifyStoreId}
-            initwebsiteUrl={initwebsiteUrl}
+            initWebsiteUrl={initWebsiteUrl}
+            initNameStore = {initNameStore}
             showToast={showToast}
           />
         </div>
