@@ -9,7 +9,7 @@ const configOnHub: ConfigOnHub = {
   // HOST_MODULAR_BE: 'http://localhost:5014',
   // HOST_MODULAR_FE: 'http://localhost:4200',
 
-  HOST_ONHUB_BE: 'https://onhub-test-1707.web.app',
+  HOST_ONHUB_BE: 'https://api-onhub.redis.asia',
   HOST_MODULAR_BE: 'https://api-onhub.redis.asia',
   HOST_MODULAR_FE: 'https://modular-onhub-test.web.app',
 };
