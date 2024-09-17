@@ -3,7 +3,7 @@
 client_id = "ab779184c5024a1d8b9abf29e430bd1e"
 name = "onhub-tfp-beta"
 handle = "onhub-tfp-beta"
-application_url = "https://routine-implemented-hang-heat.trycloudflare.com"
+application_url = "https://boats-determination-patents-blow.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://routine-implemented-hang-heat.trycloudflare.com/auth/callback",
-  "https://routine-implemented-hang-heat.trycloudflare.com/auth/shopify/callback",
-  "https://routine-implemented-hang-heat.trycloudflare.com/api/auth/callback"
+  "https://boats-determination-patents-blow.trycloudflare.com/auth/callback",
+  "https://boats-determination-patents-blow.trycloudflare.com/auth/shopify/callback",
+  "https://boats-determination-patents-blow.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
