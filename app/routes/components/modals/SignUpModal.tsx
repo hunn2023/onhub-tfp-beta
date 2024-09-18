@@ -20,13 +20,13 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
   const fullNamePattern = /^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$/;
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  const roleUser = 'Business'; 
+  const roleUser = 'Business';
   const { initShopifyStoreId, initWebsiteUrl, initNameStore } = props;
 
   useEffect(() => {
     setShowActive(props.active);
-  
-    return () => {   
+
+    return () => {
       setEmail('');
       setFullName('');
       setPhoneNumber('');
@@ -89,13 +89,13 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
               password: password,
               confirmPassword: confirmPassword,
               role : roleUser,
-              signature: '', 
-              shopifyStoreId: initShopifyStoreId, 
+              signature: '',
+              shopifyStoreId: initShopifyStoreId,
               websiteUrl: initWebsiteUrl,
               nameStore : initNameStore
             }
           ),
-            
+
         });
         if (response.ok) {
           setEmail('');
@@ -112,7 +112,7 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
           setCheckConfirmPassword('');
           // Show modal message success
           setIsSignSuccess(true);
-         
+
         }
         else {
           const responseData = await response.json();
@@ -222,7 +222,7 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
                 <Form onSubmit={handleSubmitSignUp}>
                   <FormLayout>
                     <div className={styles.bodyFlexCenter}>
-                      <img src="../../public/images/icon-Main.svg" alt={"logo"} />
+                      <img src="images/icon-Main.svg" alt={"logo"} />
                     </div>
                     <TextField
                       maxHeight={100}

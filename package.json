@@ -1,9 +1,9 @@
 {
-  "name": "onhub-tfp-beta",
+  "name": "project-dev-fontend",
   "private": true,
   "scripts": {
     "build": "remix vite:build",
-    "dev": "shopify app dev",
+    "dev": "shopify app dev --env-file .env.development",
     "config:link": "shopify app config link",
     "generate": "shopify app generate",
     "deploy": "shopify app deploy",
@@ -23,7 +23,8 @@
     "node": "^18.20 || ^20.10 || >=21.0.0"
   },
   "dependencies": {
-    "@prisma/client": "^5.19.1",
+    "@apollo/client": "^3.11.8",
+    "@prisma/client": "^5.11.0",
     "@remix-run/dev": "^2.7.1",
     "@remix-run/node": "^2.7.1",
     "@remix-run/react": "^2.7.1",
@@ -32,6 +33,7 @@
     "@shopify/polaris": "^12.0.0",
     "@shopify/shopify-app-remix": "^3.0.2",
     "@shopify/shopify-app-session-storage-prisma": "^5.0.2",
+    "classnames": "^2.5.1",
     "isbot": "^5.1.0",
     "jwt-decode": "^4.0.0",
     "prisma": "^5.11.0",
@@ -41,7 +43,7 @@
   },
   "devDependencies": {
     "@remix-run/eslint-config": "^2.7.1",
-    "@shopify/api-codegen-preset": "^1.1.1",
+    "@shopify/api-codegen-preset": "^1.0.1",
     "@types/eslint": "^8.40.0",
     "@types/node": "^22.2.0",
     "@types/react": "^18.2.31",
@@ -58,7 +60,11 @@
   "trustedDependencies": [
     "@shopify/plugin-cloudflare"
   ],
-  "resolutions": {},
-  "overrides": {},
+  "resolutions": {
+    "undici": "6.13.0"
+  },
+  "overrides": {
+    "undici": "6.13.0"
+  },
   "author": "Admin"
 }

@@ -1,0 +1,11 @@
+D:\SourceTechDigital\ontik\src\OnHub.Hosted\OnHub.ShopifyApp\bin\Debug\net8.0\OnHub.ShopifyApp.deps.json
+D:\SourceTechDigital\ontik\src\OnHub.Hosted\OnHub.ShopifyApp\bin\Debug\net8.0\OnHub.ShopifyApp.dll
+D:\SourceTechDigital\ontik\src\OnHub.Hosted\OnHub.ShopifyApp\bin\Debug\net8.0\OnHub.ShopifyApp.pdb
+D:\SourceTechDigital\ontik\src\OnHub.Hosted\OnHub.ShopifyApp\obj\Debug\net8.0\OnHub.ShopifyApp.GeneratedMSBuildEditorConfig.editorconfig
+D:\SourceTechDigital\ontik\src\OnHub.Hosted\OnHub.ShopifyApp\obj\Debug\net8.0\OnHub.ShopifyApp.AssemblyInfoInputs.cache
+D:\SourceTechDigital\ontik\src\OnHub.Hosted\OnHub.ShopifyApp\obj\Debug\net8.0\OnHub.ShopifyApp.AssemblyInfo.cs
+D:\SourceTechDigital\ontik\src\OnHub.Hosted\OnHub.ShopifyApp\obj\Debug\net8.0\OnHub.ShopifyApp.csproj.CoreCompileInputs.cache
+D:\SourceTechDigital\ontik\src\OnHub.Hosted\OnHub.ShopifyApp\obj\Debug\net8.0\OnHub.ShopifyApp.dll
+D:\SourceTechDigital\ontik\src\OnHub.Hosted\OnHub.ShopifyApp\obj\Debug\net8.0\refint\OnHub.ShopifyApp.dll
+D:\SourceTechDigital\ontik\src\OnHub.Hosted\OnHub.ShopifyApp\obj\Debug\net8.0\OnHub.ShopifyApp.pdb
+D:\SourceTechDigital\ontik\src\OnHub.Hosted\OnHub.ShopifyApp\obj\Debug\net8.0\ref\OnHub.ShopifyApp.dll
