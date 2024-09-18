@@ -1,0 +1,16 @@
+{% assign date_version = "now" | date: "%Y%m%d%H%M%S"  %}
+<script id='script-tracker-embed-app' src="https://onhub.novaonads.com/modular/prod.sdk_shopify.js?ver={{ date_version }}" defer></script>
+            <script  id='tracker-script-tracker-embed-app'>
+              function initializeOnHub(){
+                window.OnHub?window.OnHub.init({
+                  event:"tracker"
+              }):console.error("OnHub cannot load")}"complete"===document.readyState||"interactive"===document.readyState?initializeOnHub():window.addEventListener("DOMContentLoaded",initializeOnHub);
+</script>
+
+{% schema %}
+{
+  "name": "tfp-onhub-app",
+  "target": "head",
+  "settings": []
+}
+{% endschema %}
