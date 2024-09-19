@@ -43,14 +43,16 @@ const LoginFormOnHub: React.FC<LoginFormProps> = ({
             onChange={(value) => setEmail(value)}
             label="Email"
             type="email"
-            autoComplete="email"
+            autoComplete='off'
+            placeholder='Email'
           />
           <TextField
             value={password}
             onChange={(value) => setPassword(value)}
             label="Password"
             type="password"
-            autoComplete="password"
+            autoComplete="off"
+            placeholder='Password'
           />
         </FormLayout>
       </div>
@@ -80,7 +82,7 @@ const LoginFormOnHub: React.FC<LoginFormProps> = ({
                 onClick={handleSignUp}
                 type="button"
               >
-                Sign Up now
+                Sign Up Now
               </button>
             }
             active={signUpNow}

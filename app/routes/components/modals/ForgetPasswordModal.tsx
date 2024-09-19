@@ -27,7 +27,7 @@ const ForgetPasswordModal: React.FC<ForgetPasswordModalProps> = (props) => {
   const confirmPassword = '';
 
   const handleSubmit = useCallback(async () => {
-
+    
     let isValid = true;
     setCheckEmail(email ? '' : 'Email information cannot be left blank, please enter it again.');
     if (!email) {
@@ -87,7 +87,7 @@ const ForgetPasswordModal: React.FC<ForgetPasswordModalProps> = (props) => {
               ) : (
                 <div>
                   <div className={styles.bodyFlexCenter}>
-                    <img src="images/icon-Main.svg" alt={"logo"} />
+                    <img src="../../public/images/icon-Main.svg" alt={"logo"} />
                   </div>
                   <TextField
                     value={email}
@@ -95,7 +95,8 @@ const ForgetPasswordModal: React.FC<ForgetPasswordModalProps> = (props) => {
                     label="Email"
                     type="text"
                     error={checkEmail}
-                    autoComplete=''
+                    autoComplete='off'
+                    placeholder='Email'
                   />
                   <div className={styles.btnFlexEnd}>
                     <button onClick={handleSubmit} type='button' className={`${styles.btnSuccessHomeSignIn}`}>Forget password</button>

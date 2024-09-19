@@ -20,13 +20,14 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
   const fullNamePattern = /^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$/;
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  const roleUser = 'Business';
+  const roleUser = 'Business'; 
+  const sourceRef = 'Shopify';
   const { initShopifyStoreId, initWebsiteUrl, initNameStore } = props;
 
   useEffect(() => {
     setShowActive(props.active);
-
-    return () => {
+  
+    return () => {   
       setEmail('');
       setFullName('');
       setPhoneNumber('');
@@ -66,7 +67,7 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
     setCheckPassword(password ? '' : 'Password information cannot be left blank, please enter it again.');
     setCheckConfirmPassword(confirmPassword ? '' : 'Confirm Password information cannot be left blank, please enter it again.');
     if (!fullName || !email || !phoneNumber || !password || !confirmPassword) {
-      isValid = false
+      isValid = false;
     }
     if (!initShopifyStoreId || !initWebsiteUrl) {
         isValid = false;
@@ -89,13 +90,14 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
               password: password,
               confirmPassword: confirmPassword,
               role : roleUser,
-              signature: '',
-              shopifyStoreId: initShopifyStoreId,
+              signature: '', 
+              shopifyStoreId: initShopifyStoreId, 
               websiteUrl: initWebsiteUrl,
-              nameStore : initNameStore
+              nameStore : initNameStore,
+              sourceRef : sourceRef
             }
           ),
-
+            
         });
         if (response.ok) {
           setEmail('');
@@ -112,7 +114,7 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
           setCheckConfirmPassword('');
           // Show modal message success
           setIsSignSuccess(true);
-
+         
         }
         else {
           const responseData = await response.json();
@@ -164,7 +166,7 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
       case 'email':
         setEmail(text);
         if (!text) {
-          setCheckEmail('Email information cannot be left blank, please enter it again.1');
+          setCheckEmail('Email information cannot be left blank, please enter it again.');
         } else {
           if (!emailPattern.test(text)) {
             setCheckEmail('Invalid email address, please try again!');
@@ -222,7 +224,7 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
                 <Form onSubmit={handleSubmitSignUp}>
                   <FormLayout>
                     <div className={styles.bodyFlexCenter}>
-                      <img src="images/icon-Main.svg" alt={"logo"} />
+                      <img src="../../public/images/icon-Main.svg" alt={"logo"} />
                     </div>
                     <TextField
                       maxHeight={100}
@@ -231,7 +233,8 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
                       label="Full-name"
                       type="text"
                       error={checkFullName}
-                      autoComplete=''
+                      autoComplete='off'
+                      placeholder='Full-name'
                     />
                     <TextField
                       value={phoneNumber}
@@ -239,7 +242,8 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
                       label="Phone number"
                       type="text"
                       error={checkPhone}
-                      autoComplete=''
+                      autoComplete='off'
+                      placeholder='Phone number'
                     />
                     <TextField
                       value={email}
@@ -247,7 +251,8 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
                       label="Email"
                       type="text"
                       error={checkEmail}
-                      autoComplete=''
+                      autoComplete='off'
+                      placeholder='Email'
                     />
                     <TextField
                       value={password}
@@ -255,7 +260,8 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
                       label="Password"
                       type="password"
                       error={checkPassword}
-                      autoComplete=''
+                      autoComplete='off'
+                      placeholder='Password'
                     />
                     <TextField
                       value={confirmPassword}
@@ -263,7 +269,8 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
                       label="Confirm Password"
                       type="password"
                       error={checkConfirmPassword}
-                      autoComplete=''
+                      autoComplete='off'
+                      placeholder='Confirm Password'
                     />
                     <div className={styles.bodyFlexFooter}>
                       <Checkbox

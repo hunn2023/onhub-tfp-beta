@@ -8,6 +8,7 @@ import {
 import shopify from '~/shopify.server';
 import {json, LoaderFunctionArgs} from '@remix-run/node';
 import {useEffect} from "react";
+
 export async function loader({request}: LoaderFunctionArgs) {
   const {admin} = await shopify.authenticate.admin(request);
   const response = await admin.graphql(
@@ -30,6 +31,12 @@ export default function App() {
 
   useEffect(() => {
     localStorage.setItem("ShopInfo", JSON.stringify(ShopInfo));
+    const shopData = localStorage.getItem('ShopInfo');
+    if (shopData) {
+      const shopDataInfor = JSON.parse(shopData) ?? null;
+      const splitShopData = shopDataInfor.shop.id.split('/');
+      localStorage.setItem("ShopifyStoreId", splitShopData[splitShopData.length - 1] ?? "")
+    }
   }, []);
 
 

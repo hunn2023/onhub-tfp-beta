@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Page, Grid, Card, Frame, Toast } from "@shopify/polaris";
-import { TitleBar } from "@shopify/app-bridge-react";
 import styles from "./apphomePage.module.css";
 import type { User } from "../Core/services/userServices";
 import { decodeToken } from "../Core/services/userServices";
@@ -11,7 +10,6 @@ import LoginFormOnHub from "./UI/loginFormOnHub";
 import AsideOnHub from "./UI/asideOnHub";
 import MiddleCompartmentOnHub from "./UI/middleCompartmentOnHub";
 import configOnHub from "../rootOnHubs/configOnhub";
-
 const Apphomepage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -19,29 +17,23 @@ const Apphomepage = () => {
   const [signUpNow, setSignUpNow] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [userData, setUserData] = useState<User | null>(null);
-  const [ShopifyStoreId, setShopifyStoreId] = useState('');
-  const [websiteUrl, setWebsiteUrl] = useState('');
+  const [shopifyStoreId, setShopifyStoreId] = useState('');
+  const [url, setUrl] = useState('');
   const [nameStore, setNameStore] = useState('');
-  const protocolWebsite = "https://"
+  const [myshopifyDomain, setMyshopifyDomain] = useState('');
 
-  //const fetcher = useFetcher<typeof action>();
   useEffect(() => {
-    let ShopInfo = localStorage.getItem("ShopInfo") ?? "";
+    let shopInfo = localStorage.getItem("ShopInfo") ?? "";
     let localChangeUser = localStorage.getItem('userDataKey');
-
-    if (ShopInfo) {
-      const shopData = JSON.parse(ShopInfo);
-      const str = shopData?.shop?.id;
-      const result = str.split('/').pop();
-
-      localStorage.setItem("ShopifyStoreId", result)
-      localStorage.setItem("WebsiteUrl", shopData?.shop?.myshopifyDomain ?? "")
-      localStorage.setItem("NameStore", shopData?.shop?.name ?? "")
-
+    if (shopInfo) {
+      const shopData = JSON.parse(shopInfo);
+      const url = shopData.shop.url;
+      const domain = shopData.shop.myshopifyDomain;
+      const name = shopData.shop.name;
       setShopifyStoreId(localStorage.getItem("ShopifyStoreId") ?? "");
-      setWebsiteUrl(localStorage.getItem("WebsiteUrl") ?? "");
-      setNameStore(localStorage.getItem("NameStore") ?? "");
-
+      setUrl(url ?? "");
+      setNameStore(name ?? "");
+      setMyshopifyDomain(domain ?? "");
     }
     if (localChangeUser) {
       let parentLocalChangeUser = JSON.parse(localChangeUser) as User;
@@ -68,15 +60,7 @@ const Apphomepage = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     event.stopPropagation();
-
     try {
-
-      const shopifyStoreId = localStorage.getItem("ShopifyStoreId");
-      const nameStore = localStorage.getItem("NameStore");
-      const domainWebShopify = localStorage.getItem("WebsiteUrl");
-      console.log("ShopifyStoreId:" + ShopifyStoreId);
-      console.log("NameStore:" + nameStore);
-      console.log("domainWebShopify:" + domainWebShopify);
       const response = await fetch(configOnHub.HOST_ONHUB_BE + '/identity/api/auth/sign-in', {
         method: 'POST',
         headers: {
@@ -85,14 +69,14 @@ const Apphomepage = () => {
         body: JSON.stringify({
           key: email,
           password: password,
-          shopifyStoreId: ShopifyStoreId,
-          websiteUrl : protocolWebsite + domainWebShopify,
+          shopifyStoreId: shopifyStoreId,
+          websiteUrl : url,
           nameStore : nameStore
         }),
       });
       const data = await response.json();
       if (response.ok) {
-        //Update and save ShopifyStoreId and DomainWebShopify
+
         const domainWebShopifyResult = await fetch(configOnHub.HOST_MODULAR_BE + '/modular/api/setting/save-website-shopify', {
           method: 'POST',
           headers: {
@@ -100,7 +84,7 @@ const Apphomepage = () => {
           },
           body: JSON.stringify({
             shopifyStoreId: shopifyStoreId,
-            domainWebShopify: protocolWebsite + domainWebShopify
+            domainWebShopify: url
           }),
         });
         const dataShopifyResult = await domainWebShopifyResult.json();
@@ -112,7 +96,7 @@ const Apphomepage = () => {
         setUserData(userInfos);
         setLoginSuccess(true);
       } else {
-        showToast('Login failed, please check your information again.')
+        showToast('Email/Password information cannot be left blank, please enter it again')
       }
     } catch (error) {
       showToast('An error occurred while connecting to the server.')
@@ -129,12 +113,10 @@ const Apphomepage = () => {
   // Toast message
   const [toastMessage, setToastMessage] = useState('');
   const [toastActive, setToastActive] = useState(false);
-
   const showToast = useCallback((message: string) => {
     setToastMessage(message);
     setToastActive(true);
   }, []);
-
 
   const toastMarkup = toastActive ? (
     <Toast content={toastMessage} error onDismiss={() => setToastActive(false)} />
@@ -143,7 +125,6 @@ const Apphomepage = () => {
   return (
     <Frame>
       <Page>
-        <TitleBar title="Welcome to OnHub - Tiktok Fraud Prevention solution!" />
         <Grid>
           <Grid.Cell columnSpan={{ xs: 6, sm: 6, md: 6, lg: 8, xl: 8 }}>
             <Card>
@@ -158,11 +139,11 @@ const Apphomepage = () => {
                         <p className={styles.footerBtnSignAcountText}>Don't have an account?</p>
                         <SignUpModal
                           activator={<button className={styles.btnSuccessHome} onClick={handleSignUp} type="button">Sign
-                            Up now</button>}
+                            Up Now</button>}
                           active={signUpNow}
                           handleChange={handleSignUp}
-                          initShopifyStoreId={ShopifyStoreId}
-                          initWebsiteUrl={websiteUrl}
+                          initShopifyStoreId={shopifyStoreId}
+                          initWebsiteUrl={myshopifyDomain}
                           initNameStore ={nameStore}
                           showToast={showToast}
                         />
@@ -188,8 +169,8 @@ const Apphomepage = () => {
                       handleSignUp={handleSignUp}
                       showForgetPassWord={showForgetPassWord}
                       signUpNow={signUpNow}
-                      initShopifyStoreId={ShopifyStoreId}
-                      initWebsiteUrl={websiteUrl}
+                      initShopifyStoreId={shopifyStoreId}
+                      initWebsiteUrl={myshopifyDomain}
                       initNameStore ={nameStore}
                       showToast={showToast}
                     />

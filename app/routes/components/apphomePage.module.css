@@ -1,191 +1,308 @@
 /* home css */
-.bodyonhub{
-    padding: 6px;
-}
-.headerTitleText{
-    color : #0061C1;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 20px;
-    margin-bottom: 18px;
-}
-.middleCompartment{
-    margin-top: 30px;
-}
-.headerTitleDecscription{
-    color: #4F4F4F;
-}
-.contentLayoutForm{
-    padding: 20px;
-}
-.btnSuccessHome{
-    text-decoration: none;
-    background-color: transparent;
-    border: none ;
-    outline: none;
-    color: #0061C1;
-    cursor: pointer;
-    padding: 0;
-}
-.pupupForgetPassword{
-    display: flex;
-    justify-content: flex-end;
-    padding-right: 20px;
-}
-.footerBtnSignAcount{
-    display: flex;
-}
-.footerBtnSignAcountText{
-    padding-right: 4px;
-}
-.footerBtnSign{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 20px 20px 0;
+.bodyonhub {
+  padding: 6px;
 }
 
-.btnSuccessHomeSignIn{
-    padding: 10px 23px;
-    background-color:#0061C1 ;
-    color: #FFFFFF;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    border-radius: 4px;
-}
-.btnSuccessHomeSignIn:hover{
-    opacity: 0.8;
+.headerTitleText {
+  color: #0061C1;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 20px;
+  margin-bottom: 18px;
 }
 
-.contentOnhubAccount{
-    margin-top: 10px;
-}
-.contentHnhubImg{
-    padding: 20px;
-}
-.contentOnhubHalf{
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.contentOnhubHalfDescription{
-   margin-bottom: 18px;
-} 
-.forGetPassWordMargin{
-    margin: 0 20px 20px;
-}
-.btnFlexEnd{
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 30px;
-}
-.bodyFlexCenter{
-    display: flex;
-    justify-content: center;
-}
-.bodyFlexFooter{
-    display: flex;
-    align-items: center;
-}
-.userCardOnhub{
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    background-color: #e0e0e0;
-    border-radius: 16px;
-    width: 440px;
-    margin: 50px;
-}
-.modalSignUpMarggin{
-    margin: 0px 20px 20px 20px;
-}
-.avatarOnhub{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 10px;
-    background-image: url('https://img.lovepik.com/png/20231019/customer-login-avatar-client-gray-head-portrait_269373_wh860.png');
-    background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat;
-}
-.userInfoOnhub{
-    display: flex;
-    flex-direction: column;
-}
-.userNameOnhub{
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-.userEmailOnhub{
-    color: #4F4F4F;
-    text-decoration: none;
-}
-.titleLeftOnhub{
-    font-size: 18px;
-    margin-bottom: 10px;
-    font-weight: bold;
-    color: #4F4F4F;
+.middleCompartment {
+  margin-top: 30px;
 }
 
-.storyLeftCard{
-    border-top: 1px solid #ddd;
-    padding: 12px 0;
+.headerTitleDecscription {
+  color: #4F4F4F;
 }
 
-.storyLeftCard:first-child{
-    border-top: none;
+.contentLayoutForm {
+  padding: 20px;
 }
 
-.storyLeftDescription{
-    font-size: 14px;
-    color: #4F4F4F;
-    margin-bottom: 8px;
+.btnSuccessHome {
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #0061C1;
+  cursor: pointer;
+  padding: 0;
 }
 
-.hashtagsLeft{
-    font-size: 13px;
-    color: #777777;
-    margin-bottom: 8px;
+.pupupForgetPassword {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20px;
 }
 
-.readMoreLeft{
-    font-size: 14px;
-    color: #0066cc;
-    text-decoration: none;
+.footerBtnSignAcount {
+  display: flex;
 }
 
-.readMoreLeft:hover{
-    text-decoration: underline;
+.footerBtnSignAcountText {
+  padding-right: 4px;
 }
-.textModalTitles{
-    font-size: 17px;
-    line-height: 48px;
-    color: #4F4F4F;
-    font-weight: 700;
+
+.footerBtnSign {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 20px 0;
 }
-.textAccepted{
-    margin-left: 5px;
+
+.btnSuccessHomeSignIn {
+  padding: 10px 23px;
+  background-color: #0061C1;
+  color: #FFFFFF;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 4px;
 }
-.textTheTermsLink{
-    text-decoration: none;
-    color: #0061C1;
+
+.btnSuccessHomeSignIn:hover {
+  opacity: 0.8;
 }
-.formModalEmailOnhub{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 15px;
-    color:#4F4F4F ;
+
+.contentOnhubAccount {
+  margin-top: 10px;
 }
-.imgFormOnHub{
-    width: 236px;
-    margin: 30px;
+
+.contentHnhubImg {
+  padding: 20px;
+}
+
+.contentOnhubHalf {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contentOnhubHalfDescription {
+  margin-bottom: 18px;
+}
+
+.forGetPassWordMargin {
+  margin: 0 20px 20px;
+}
+
+.btnFlexEnd {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+}
+
+.bodyFlexCenter {
+  display: flex;
+  justify-content: center;
+}
+
+.bodyFlexFooter {
+  display: flex;
+  align-items: center;
+}
+
+.userCardOnhub {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #e0e0e0;
+  border-radius: 16px;
+  width: 440px;
+  margin: 50px;
+}
+
+.modalSignUpMarggin {
+  margin: 0px 20px 20px 20px;
+}
+
+.avatarOnhub {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  background-image: url('https://img.lovepik.com/png/20231019/customer-login-avatar-client-gray-head-portrait_269373_wh860.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.userInfoOnhub {
+  display: flex;
+  flex-direction: column;
+}
+
+.userNameOnhub {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.userEmailOnhub {
+  color: #4F4F4F;
+  text-decoration: none;
+}
+
+.titleLeftOnhub {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #4F4F4F;
+}
+
+.storyLeftCard {
+  border-top: 1px solid #ddd;
+  padding: 12px 0;
+}
+
+.storyLeftCard:first-child {
+  border-top: none;
+}
+
+.storyLeftDescription {
+  font-size: 14px;
+  color: #4F4F4F;
+  margin-bottom: 8px;
+}
+
+.hashtagsLeft {
+  font-size: 13px;
+  color: #777777;
+  margin-bottom: 8px;
+}
+
+.readMoreLeft {
+  font-size: 14px;
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.readMoreLeft:hover {
+  text-decoration: underline;
+}
+
+.textModalTitles {
+  font-size: 17px;
+  line-height: 48px;
+  color: #4F4F4F;
+  font-weight: 700;
+}
+
+.textAccepted {
+  margin-left: 5px;
+}
+
+.textTheTermsLink {
+  text-decoration: none;
+  color: #0061C1;
+}
+
+.formModalEmailOnhub {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 15px;
+  color: #4F4F4F;
+}
+
+.imgFormOnHub {
+  width: 236px;
+  margin: 30px;
+}
+
+.screenIframe {
+  border: 0;
+  width: 100%;
+  height: 93%;
+}
+
+.boxHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 17px;
+  border-bottom: 1px solid #979797;
+  border-left: none;
+  border-top: none;
+  border-right: none;
+}
+.textWelcome {
+  font-size: 20px;
+  color: #0061C1;
+  font-weight: bold;
+}
+
+.textWelcome {
+  font-size: 20px;
+  color: #0061C1;
+  font-weight: bold;
+}
+
+.helpCenter {
+  color: #0061C1;
+  cursor: pointer;
+}
+.screenIframe{
+  border: 0;
+  width: 100%;
+  height: 99%;
+}
+.customTitleBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+}
+
+.customTitleBar h1 {
+  color: #0061C1;
+  font-size: 24px;
+  margin: 0;
+}
+
+.customTitleBar .helpCenterLink {
+  color: #0061C1;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.customTitleBar .helpCenterLink:hover {
+  text-decoration: underline;
+}
+.helpCenter {
+  color: #0061C1;
+  cursor: pointer;
 }
 .screenIframe{
     border: 0;
     width: 100%;
     height: 99%;
 }
+.customTitleBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+  }
+
+  .customTitleBar h1 {
+    color: #0061C1;
+    font-size: 24px;
+    margin: 0;
+  }
+
+  .customTitleBar .helpCenterLink {
+    color: #0061C1;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .customTitleBar .helpCenterLink:hover {
+    text-decoration: underline;
+  }
+  .Polaris-LegacyStack.Polaris-LegacyStack--spacingNone.Polaris-LegacyStack--alignmentCenter{
+    color: #0061C1 !important;
+  }
