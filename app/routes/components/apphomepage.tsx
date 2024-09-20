@@ -10,6 +10,7 @@ import LoginFormOnHub from "./UI/loginFormOnHub";
 import AsideOnHub from "./UI/asideOnHub";
 import MiddleCompartmentOnHub from "./UI/middleCompartmentOnHub";
 import configOnHub from "../rootOnHubs/configOnhub";
+
 const Apphomepage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,7 +22,7 @@ const Apphomepage = () => {
   const [url, setUrl] = useState('');
   const [nameStore, setNameStore] = useState('');
   const [myshopifyDomain, setMyshopifyDomain] = useState('');
-  const [isUserDataAvailable, setIsUserDataAvailable] = useState(false);
+  const [isUserDataAvailable, setIsUserDataAvailable] = useState(false); 
 
   useEffect(() => {
     let shopInfo = localStorage.getItem("ShopInfo") ?? "";
@@ -31,7 +32,8 @@ const Apphomepage = () => {
       const url = shopData.shop.url;
       const domain = shopData.shop.myshopifyDomain;
       const name = shopData.shop.name;
-      setShopifyStoreId(localStorage.getItem("ShopifyStoreId") ?? "");
+      const splitShopData = shopData.shop.id.split('/');
+      setShopifyStoreId(splitShopData[splitShopData.length - 1] ?? "");
       setUrl(url ?? "");
       setNameStore(name ?? "");
       setMyshopifyDomain(domain ?? "");
@@ -48,6 +50,7 @@ const Apphomepage = () => {
       }
     } else {
       setLoginSuccess(false);
+      setIsUserDataAvailable(false);
     }
   }, []);
 
@@ -58,7 +61,7 @@ const Apphomepage = () => {
   const handleSignUp = () => {
     setSignUpNow(!signUpNow);
   }
-
+  
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     event.stopPropagation();
@@ -78,7 +81,7 @@ const Apphomepage = () => {
       });
       const data = await response.json();
       if (response.ok) {
-
+        
         const domainWebShopifyResult = await fetch(configOnHub.HOST_MODULAR_BE + '/modular/api/setting/save-website-shopify', {
           method: 'POST',
           headers: {
@@ -97,9 +100,9 @@ const Apphomepage = () => {
         const userInfos = decodeToken(accessToken);
         setUserData(userInfos);
         setLoginSuccess(true);
-        setIsUserDataAvailable(true);
+        setIsUserDataAvailable(true); 
       } else {
-        showToast('Email/Password information cannot be left blank, please enter it again')
+        showToast(data.message);
       }
     } catch (error) {
       showToast('An error occurred while connecting to the server.')
@@ -112,7 +115,7 @@ const Apphomepage = () => {
     setEmail('');
     setPassword('');
     setLoginSuccess(false);
-    setIsUserDataAvailable(false);
+    setIsUserDataAvailable(false); 
   };
   // Toast message
   const [toastMessage, setToastMessage] = useState('');

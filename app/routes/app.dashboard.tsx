@@ -20,6 +20,7 @@ export default function Dashboard() {
       RenderScripts();
     }
     setUrl(changeHandlerUrl(parsedDataUser?.id ?? "", shopifyStoreId ?? "", false));
+
     window.addEventListener('message', handleMessage);
     return () => {
       window.removeEventListener('message', handleMessage);
@@ -66,6 +67,7 @@ export default function Dashboard() {
     script.async = true;
     document.body.appendChild(script);
   }
+
   const handleMessage = (event: MessageEvent) => {
     if (event.origin.includes(baseUrlFe)) {
       try {

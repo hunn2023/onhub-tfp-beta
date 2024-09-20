@@ -36,8 +36,6 @@ const LoginFormOnHub: React.FC<LoginFormProps> = ({
 }) => {
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const [checkEmail, setCheckEmail] = useState('');
-  const [checkPassword, setCheckPassword] = useState('');
-
   const validateField = (text: string) => {
     setEmail(text);
     if (!text) {
@@ -50,12 +48,6 @@ const LoginFormOnHub: React.FC<LoginFormProps> = ({
       } else {
         setCheckEmail('');
       }
-    }
-  };
-const validatePassword = (password: string) => {
-    setPassword(password);
-    if (!password) {
-      setCheckPassword('Password information cannot be left blank, please enter it again.');
     }
   };
   return (
@@ -73,12 +65,11 @@ const validatePassword = (password: string) => {
           />
           <TextField
             value={password}
-            onChange={(value) => validatePassword(value)}
+            onChange={(value) => setPassword(value)}
             label="Password"
             type="password"
             autoComplete="off"
             placeholder='Password'
-            error={checkPassword}
           />
         </FormLayout>
       </div>

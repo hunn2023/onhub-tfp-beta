@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
-import React, {useEffect, useState} from "react";
+import React, {  useEffect, useState } from "react";
 import ConfigOnHub from "~/routes/rootOnHubs/configOnhub";
-import type {User} from "./Core/services/userServices";
+import type { User } from "./Core/services/userServices";
 import styles from "./components/apphomePage.module.css";
-import {useNavigate} from "@remix-run/react";
+import { useNavigate } from "@remix-run/react";
 // import TitleOnHub from "../routes/components/UI/titleOnHub";
 import Constants from "./Core/Helpers/constants";
 
@@ -41,11 +41,12 @@ export default function ConfigurationList() {
         if (dataConvert.messageName === 'REDIRECT_TO') {
           if (dataConvert.data.url.includes('setting?adAccountId')) {
             setUrl(dataConvert.data.url + `&shopifyStoreId=${shopifyStoreId ?? ""}&nameStore=${encodedNameStore}`)
-          } else if (dataConvert.data.url === '/feature?c=Configuration&v=FraudPrevention') {
-            setUrl(`${baseUrlFe}/configuration/fraud/prevention?user_id=${parsedDataUser?.id ?? ""}&shopifyStoreId=${shopifyStoreId ?? ""}&nameStore=${encodedNameStore}`);
+          }else if(dataConvert.data.url === '/feature?c=Configuration&v=FraudPrevention'){
+            setUrl(`${baseUrlFe}/configuration/fraud/prevention?user_id=${parsedDataUser?.id ?? ""}&shopifyStoreId=${shopifyStoreId?? ""}&nameStore=${encodedNameStore}`);
           } else if (dataConvert.data.url === 'loginShopify') {
             navigate('/app');
-          } else if (dataConvert.data.url === '/feature?c=Configuration&v=List') {
+          }
+          else if (dataConvert.data.url === '/feature?c=Configuration&v=List') {
             setUrl(changeHandlerUrl(parsedDataUser?.id ?? "", shopifyStoreId ?? ""))
           }
         }
@@ -68,7 +69,6 @@ export default function ConfigurationList() {
       window.removeEventListener('message', handleMessage);
     };
   }, []);
-
 
   const RenderScripts = () => {
     const s = document.createElement('script');
@@ -95,10 +95,10 @@ export default function ConfigurationList() {
 
   return (
     <>
-      {/*<TitleOnHub*/}
-      {/*  welcomeText={Constants.DEFAULT_WELCOMETEXT}*/}
-      {/*  helpCenterLink={Constants.DEFAULT_HELPER_LINK}*/}
-      {/*/>*/}
+    {/*<TitleOnHub*/}
+    {/*      welcomeText = {Constants.DEFAULT_WELCOMETEXT}*/}
+    {/*      helpCenterLink={Constants.DEFAULT_HELPER_LINK}*/}
+    {/*    />*/}
       <iframe title="" src={url} className={styles.screenIframe}/>
     </>
   )

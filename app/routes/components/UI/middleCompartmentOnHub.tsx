@@ -1,29 +1,12 @@
-import React, { useEffect, useState } from 'react';
 import { Grid, Card } from "@shopify/polaris";
 import styles from "../apphomePage.module.css";
 import {useNavigate} from "react-router";
-import type { User } from '~/routes/Core/services/userServices';
 
 interface MiddleCompartmentOnHubProps {
     isUserDataAvailable: boolean;
 }
 
-const MiddleCompartmentOnHub: React.FC<MiddleCompartmentOnHubProps > = (props) => {
-
-  const [isUserDataAvailable, setIsUserDataAvailable] = useState<boolean>(false);
-
-  useEffect(() => {
-
-    const userData = localStorage.getItem('userDataKey');
-    const parsedDataUser = userData ? JSON.parse(userData) as User : null;
-
-    if (parsedDataUser) {
-      setIsUserDataAvailable(true);
-    } else {
-      setIsUserDataAvailable(false);
-    }
-  }, []);
-
+const MiddleCompartmentOnHub: React.FC<MiddleCompartmentOnHubProps> = (props) => {
   const navigate = useNavigate();
     const handleNavigate = (checkLogin: boolean) => {
     if (checkLogin) {

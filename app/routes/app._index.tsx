@@ -3,8 +3,8 @@ import {
 
 } from "@shopify/polaris";
 import Apphomepage from "./components/apphomepage";
+// import TitleOnHub from "../routes/components/UI/titleOnHub";
 import Constants from "./Core/Helpers/constants";
-// import TitleOnHub from "~/routes/components/UI/titleOnhub";
 
 
 
@@ -13,7 +13,7 @@ export default function Index() {
   //
   return (
     <>
-    {/*<TitleOnHub*/}
+    {/*<TitleOnHub    */}
     {/*      welcomeText = {Constants.DEFAULT_WELCOMETEXT}*/}
     {/*      helpCenterLink={Constants.DEFAULT_HELPER_LINK}*/}
     {/*    />*/}

@@ -3,7 +3,9 @@
             <script  id='tracker-script-tracker-embed-app'>
               function initializeOnHub(){
                 window.OnHub?window.OnHub.init({
-                  event:"tracker"
+                  event:"tracker",
+                  tracker: 'shopify_app_embed',
+                  website: 'shopify_app_embed.novaon',
               }):console.error("OnHub cannot load")}"complete"===document.readyState||"interactive"===document.readyState?initializeOnHub():window.addEventListener("DOMContentLoaded",initializeOnHub);
 </script>
 
