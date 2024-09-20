@@ -72,6 +72,7 @@ export default function ConfigurationList() {
     {/*      welcomeText = {Constants.DEFAULT_WELCOMETEXT}*/}
     {/*      helpCenterLink={Constants.DEFAULT_HELPER_LINK}*/}
     {/*    />*/}
+      p
       <iframe title="" src={url} className={styles.screenIframe}/>
     </>
   )
