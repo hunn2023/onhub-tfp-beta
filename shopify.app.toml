@@ -1,7 +1,7 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "ab779184c5024a1d8b9abf29e430bd1e"
-name = "OnHub Tiktok Fraud Prevention Beta"
+name = "onhub-tfp-beta"
 handle = "onhub-tfp-beta"
 application_url = "https://onhub-tfp-beta-1.onrender.com"
 embedded = true

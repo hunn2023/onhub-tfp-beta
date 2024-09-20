@@ -56,6 +56,13 @@ export default function ConfigurationList() {
   };
 
   useEffect(() => {
+    const s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.async = true;
+    s.innerHTML = " (function(d, s, id, t) {\n              if (d.getElementById(id)) return;\n              var js, fjs = d.getElementsByTagName(s)[0];\n              js = d.createElement(s);\n              js.id = id;\n              js.src = 'https://widget.oncustomer.asia/js/index.js?lang=en&token=' + t;\n              fjs.parentNode.insertBefore(js, fjs);}\n            (document, 'script', 'oc-chat-widget-bootstrap', '32bab5cf62c5385d30d0e20422214aa5'));";
+    document.body.appendChild(s);
+
+
     const userData = localStorage.getItem('userDataKey');
     const dataUser = userData ? JSON.parse(userData) as User : null;
     let userId = dataUser?.id ?? "";
