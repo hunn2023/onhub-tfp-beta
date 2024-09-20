@@ -5,9 +5,9 @@ interface ConfigOnHub {
 }
 
 const configOnHub: ConfigOnHub = {
-  HOST_ONHUB_BE: 'http://localhost:5293',
-  HOST_MODULAR_BE: 'http://localhost:5014',
-  HOST_MODULAR_FE: 'http://localhost:4200',
+  HOST_ONHUB_BE: 'https://onhub-test-1707.web.app',
+  HOST_MODULAR_BE: 'https://api-onhub.redis.asia',
+  HOST_MODULAR_FE: 'https://modular-onhub-test.web.app',
 };
 
 export default configOnHub;

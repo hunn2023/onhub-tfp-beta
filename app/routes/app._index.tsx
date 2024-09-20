@@ -3,7 +3,7 @@ import {
 
 } from "@shopify/polaris";
 import Apphomepage from "./components/apphomepage";
-import TitleOnHub from "./components/UI/titleOnHub";
+import TitleOnHub from "./components/UI/titleOnhub";
 import Constants from "./Core/Helpers/constants";
 
 
