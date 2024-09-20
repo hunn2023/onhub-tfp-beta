@@ -5,7 +5,7 @@ interface ConfigOnHub {
 }
 
 const configOnHub: ConfigOnHub = {
-  HOST_ONHUB_BE: 'https://onhub-test-1707.web.app',
+  HOST_ONHUB_BE: 'https://api-onhub.redis.asia',
   HOST_MODULAR_BE: 'https://api-onhub.redis.asia',
   HOST_MODULAR_FE: 'https://modular-onhub-test.web.app',
 };
