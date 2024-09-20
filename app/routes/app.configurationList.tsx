@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
-import React, {  useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import ConfigOnHub from "~/routes/rootOnHubs/configOnhub";
-import type { User } from "./Core/services/userServices";
+import type {User} from "./Core/services/userServices";
 import styles from "./components/apphomePage.module.css";
-import { useNavigate } from "@remix-run/react";
+import {useNavigate} from "@remix-run/react";
+// import TitleOnHub from "../routes/components/UI/titleOnHub";
 import Constants from "./Core/Helpers/constants";
-// import TitleOnHub from "~/routes/components/UI/titleOnhub";
 
 export default function ConfigurationList() {
   const baseUrlFe = ConfigOnHub.HOST_MODULAR_FE;
@@ -41,12 +41,11 @@ export default function ConfigurationList() {
         if (dataConvert.messageName === 'REDIRECT_TO') {
           if (dataConvert.data.url.includes('setting?adAccountId')) {
             setUrl(dataConvert.data.url + `&shopifyStoreId=${shopifyStoreId ?? ""}&nameStore=${encodedNameStore}`)
-          }else if(dataConvert.data.url === '/feature?c=Configuration&v=FraudPrevention'){
-            setUrl(`${baseUrlFe}/configuration/fraud/prevention?user_id=${parsedDataUser?.id ?? ""}&shopifyStoreId=${shopifyStoreId?? ""}&nameStore=${encodedNameStore}`);
+          } else if (dataConvert.data.url === '/feature?c=Configuration&v=FraudPrevention') {
+            setUrl(`${baseUrlFe}/configuration/fraud/prevention?user_id=${parsedDataUser?.id ?? ""}&shopifyStoreId=${shopifyStoreId ?? ""}&nameStore=${encodedNameStore}`);
           } else if (dataConvert.data.url === 'loginShopify') {
             navigate('/app');
-          }
-          else if (dataConvert.data.url === '/feature?c=Configuration&v=List') {
+          } else if (dataConvert.data.url === '/feature?c=Configuration&v=List') {
             setUrl(changeHandlerUrl(parsedDataUser?.id ?? "", shopifyStoreId ?? ""))
           }
         }
@@ -56,16 +55,12 @@ export default function ConfigurationList() {
   };
 
   useEffect(() => {
-    const s = document.createElement('script');
-    s.type = 'text/javascript';
-    s.async = true;
-    s.innerHTML = " (function(d, s, id, t) {\n              if (d.getElementById(id)) return;\n              var js, fjs = d.getElementsByTagName(s)[0];\n              js = d.createElement(s);\n              js.id = id;\n              js.src = 'https://widget.oncustomer.asia/js/index.js?lang=en&token=' + t;\n              fjs.parentNode.insertBefore(js, fjs);}\n            (document, 'script', 'oc-chat-widget-bootstrap', '32bab5cf62c5385d30d0e20422214aa5'));";
-    document.body.appendChild(s);
-
-
     const userData = localStorage.getItem('userDataKey');
     const dataUser = userData ? JSON.parse(userData) as User : null;
     let userId = dataUser?.id ?? "";
+    if (userId != "") {
+      RenderScripts();
+    }
     let shopifyStoreId = dataUser?.shopifyStoreId ?? "";
     setUrl(changeHandlerUrl(userId, shopifyStoreId))
     window.addEventListener('message', handleMessage);
@@ -73,13 +68,37 @@ export default function ConfigurationList() {
       window.removeEventListener('message', handleMessage);
     };
   }, []);
+
+
+  const RenderScripts = () => {
+    const s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.async = true;
+    s.innerHTML = `(function(d, s, id, t) {
+        if (d.getElementById(id)) return;
+        var js, fjs = d.getElementsByTagName(s)[0];
+        js = d.createElement(s);
+        js.id = id;
+        js.src = 'https://widget.oncustomer.asia/js/index.js?lang=en&token=' + t;
+        fjs.parentNode.insertBefore(js, fjs);}
+      (document, 'script', 'oc-chat-widget-bootstrap', '32bab5cf62c5385d30d0e20422214aa5'));`
+    document.body.appendChild(s);
+
+    var script = document.createElement('script');
+    script.id = 'autoAdsMaxLead-widget-script';
+    script.src = 'https://cdn-onmar.novaontech.com/scripts/autoads-maxlead-widget.js?business_id=E0299742DB6340B2BE6AB178E25D352D';
+    script.type = 'text/javascript';
+    script.charset = 'UTF-8';
+    script.async = true;
+    document.body.appendChild(script);
+  }
+
   return (
     <>
-    {/*<TitleOnHub*/}
-    {/*      welcomeText = {Constants.DEFAULT_WELCOMETEXT}*/}
-    {/*      helpCenterLink={Constants.DEFAULT_HELPER_LINK}*/}
-    {/*    />*/}
-      p
+      {/*<TitleOnHub*/}
+      {/*  welcomeText={Constants.DEFAULT_WELCOMETEXT}*/}
+      {/*  helpCenterLink={Constants.DEFAULT_HELPER_LINK}*/}
+      {/*/>*/}
       <iframe title="" src={url} className={styles.screenIframe}/>
     </>
   )
