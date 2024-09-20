@@ -5,7 +5,7 @@ import type { User } from "./Core/services/userServices";
 import styles from "./components/apphomePage.module.css";
 import { useNavigate } from "@remix-run/react";
 import Constants from "./Core/Helpers/constants";
-import TitleOnHub from "~/routes/components/UI/titleOnhub";
+// import TitleOnHub from "~/routes/components/UI/titleOnhub";
 
 export default function ConfigurationList() {
   const baseUrlFe = ConfigOnHub.HOST_MODULAR_FE;
@@ -68,10 +68,10 @@ export default function ConfigurationList() {
   }, []);
   return (
     <>
-    <TitleOnHub
-          welcomeText = {Constants.DEFAULT_WELCOMETEXT}
-          helpCenterLink={Constants.DEFAULT_HELPER_LINK}
-        />
+    {/*<TitleOnHub*/}
+    {/*      welcomeText = {Constants.DEFAULT_WELCOMETEXT}*/}
+    {/*      helpCenterLink={Constants.DEFAULT_HELPER_LINK}*/}
+    {/*    />*/}
       <iframe title="" src={url} className={styles.screenIframe}/>
     </>
   )

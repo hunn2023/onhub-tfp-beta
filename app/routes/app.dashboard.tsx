@@ -4,7 +4,7 @@ import {useNavigate} from "react-router";
 import ConfigOnHub from "~/routes/rootOnHubs/configOnhub";
 import type {User} from "./Core/services/userServices";
 import styles from "./components/apphomePage.module.css";
-import TitleOnHub from "~/routes/components/UI/titleOnHub";
+// import TitleOnHub from "~/routes/components/UI/titleOnHub";
 import Constants from "~/routes/Core/Helpers/constants";
 export default function Dashboard() {
   const baseUrlFe = ConfigOnHub.HOST_MODULAR_FE;
@@ -66,10 +66,10 @@ export default function Dashboard() {
   };
   return (
     <>
-      <TitleOnHub
-          welcomeText = {Constants.DEFAULT_WELCOMETEXT}
-          helpCenterLink={Constants.DEFAULT_HELPER_LINK}
-        />
+      {/*<TitleOnHub*/}
+      {/*    welcomeText = {Constants.DEFAULT_WELCOMETEXT}*/}
+      {/*    helpCenterLink={Constants.DEFAULT_HELPER_LINK}*/}
+      {/*  />*/}
       <iframe src={url} className={styles.screenIframe}/>
     </>
   );
