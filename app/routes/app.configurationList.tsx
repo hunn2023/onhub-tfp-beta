@@ -4,8 +4,8 @@ import ConfigOnHub from "~/routes/rootOnHubs/configOnhub";
 import type { User } from "./Core/services/userServices";
 import styles from "./components/apphomePage.module.css";
 import { useNavigate } from "@remix-run/react";
-import TitleOnHub from "~/routes/components/UI/titleOnhub";
 import Constants from "./Core/Helpers/constants";
+import TitleOnHub from "~/routes/components/UI/titleOnhub";
 
 export default function ConfigurationList() {
   const baseUrlFe = ConfigOnHub.HOST_MODULAR_FE;
