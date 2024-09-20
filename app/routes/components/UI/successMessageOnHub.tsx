@@ -10,7 +10,7 @@ const SuccessMessageOnHub: React.FC<SuccessMessageProps> = ({ handleClose, butto
   return (
     <div>
       <div className={styles.bodyFlexCenter}>
-        <img src="../../public/images/icon-Main.svg" alt={"logo"} />
+        <img src="images/icon-Main.svg" alt={"logo"} />
       </div>
       <div className={styles.formModalEmailOnhub}>
         <span>Please check your email inbox (including spam/junk folder)</span>

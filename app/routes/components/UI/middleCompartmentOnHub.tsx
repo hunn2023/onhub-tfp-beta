@@ -13,17 +13,17 @@ const MiddleCompartmentOnHub: React.FC<MiddleCompartmentOnHubProps > = (props) =
   const [isUserDataAvailable, setIsUserDataAvailable] = useState<boolean>(false);
 
   useEffect(() => {
-    
+
     const userData = localStorage.getItem('userDataKey');
     const parsedDataUser = userData ? JSON.parse(userData) as User : null;
-    
+
     if (parsedDataUser) {
-      setIsUserDataAvailable(true); 
+      setIsUserDataAvailable(true);
     } else {
-      setIsUserDataAvailable(false); 
+      setIsUserDataAvailable(false);
     }
   }, []);
-  
+
   const navigate = useNavigate();
     const handleNavigate = (checkLogin: boolean) => {
     if (checkLogin) {
@@ -47,7 +47,7 @@ const MiddleCompartmentOnHub: React.FC<MiddleCompartmentOnHubProps > = (props) =
                     objectFit: 'cover',
                     objectPosition: 'center',
                   }}
-                  src="~/../public/images/img_Dashboard.png"
+                  src="images/img_Dashboard.png"
                 />
               </div>
               <div className={styles.contentOnhubHalf}>
@@ -78,7 +78,7 @@ const MiddleCompartmentOnHub: React.FC<MiddleCompartmentOnHubProps > = (props) =
                     objectFit: 'cover',
                     objectPosition: 'center',
                   }}
-                  src="~/../public/images/img_ConfigurationList.png"
+                  src="images/img_ConfigurationList.png"
                 />
               </div>
               <div className={styles.contentOnhubHalf}>
