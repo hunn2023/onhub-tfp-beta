@@ -21,6 +21,7 @@ const Apphomepage = () => {
   const [url, setUrl] = useState('');
   const [nameStore, setNameStore] = useState('');
   const [myshopifyDomain, setMyshopifyDomain] = useState('');
+  const [isUserDataAvailable, setIsUserDataAvailable] = useState(false);
 
   useEffect(() => {
     let shopInfo = localStorage.getItem("ShopInfo") ?? "";
@@ -43,6 +44,7 @@ const Apphomepage = () => {
         setUserData(parentLocalChangeUser);
         setEmail(parentLocalChangeUser.email);
         setLoginSuccess(true);
+        setIsUserDataAvailable(true);
       }
     } else {
       setLoginSuccess(false);
@@ -95,6 +97,7 @@ const Apphomepage = () => {
         const userInfos = decodeToken(accessToken);
         setUserData(userInfos);
         setLoginSuccess(true);
+        setIsUserDataAvailable(true);
       } else {
         showToast('Email/Password information cannot be left blank, please enter it again')
       }
@@ -109,6 +112,7 @@ const Apphomepage = () => {
     setEmail('');
     setPassword('');
     setLoginSuccess(false);
+    setIsUserDataAvailable(false);
   };
   // Toast message
   const [toastMessage, setToastMessage] = useState('');
@@ -178,7 +182,7 @@ const Apphomepage = () => {
                 )}
               </div>
             </Card>
-            <MiddleCompartmentOnHub />
+            <MiddleCompartmentOnHub isUserDataAvailable= {isUserDataAvailable} />
           </Grid.Cell>
           <Grid.Cell columnSpan={{ xs: 3, sm: 3, md: 3, lg: 4, xl: 4 }}>
             <AsideOnHub />

@@ -62,7 +62,7 @@ const ForgetPasswordModal: React.FC<ForgetPasswordModalProps> = (props) => {
   const validateField = (text: string) => {
     setEmail(text);
     if (!text) {
-      setCheckEmail('Email information cannot be left blank, please enter it again.1');
+      setCheckEmail('Email information cannot be left blank, please enter it again.');
     } else {
       if (!emailPattern.test(text)) {
         setCheckEmail('Invalid email address, please try again!');

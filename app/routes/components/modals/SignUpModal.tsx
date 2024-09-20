@@ -17,7 +17,7 @@ interface SignUpModalProps {
 const SignUpModal: React.FC<SignUpModalProps> = (props) => {
   // Regular Expressions
   const phonePattern = /^\+?[0-9]{10,15}$/;
-  const fullNamePattern = /^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$/;
+  const fullNamePattern = /^[a-zA-Z0-9]+(?: [a-zA-Z0-9]+)*$/;
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const roleUser = 'Business'; 
@@ -139,7 +139,7 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
       case 'fullName':
         setFullName(text);
         if (!text) {
-          setCheckFullName('Full-name information cannot be left blank, please enter it again.');
+          setCheckFullName('Full-name information cannot be left blank, please enter it again!');
         } else if (text.length < 5 || text.length > 50) {
           setCheckFullName('The Full-name length should be between 5-50 characters, please try again!');
         } else if (!fullNamePattern.test(text)) {

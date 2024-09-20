@@ -1,10 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid, Card } from "@shopify/polaris";
 import styles from "../apphomePage.module.css";
 import {useNavigate} from "react-router";
+import type { User } from '~/routes/Core/services/userServices';
 
-const MiddleCompartmentOnHub: React.FC = () => {
+interface MiddleCompartmentOnHubProps {
+    isUserDataAvailable: boolean;
+}
 
+const MiddleCompartmentOnHub: React.FC<MiddleCompartmentOnHubProps > = (props) => {
+
+  const [isUserDataAvailable, setIsUserDataAvailable] = useState<boolean>(false);
+
+  useEffect(() => {
+    
+    const userData = localStorage.getItem('userDataKey');
+    const parsedDataUser = userData ? JSON.parse(userData) as User : null;
+    
+    if (parsedDataUser) {
+      setIsUserDataAvailable(true); 
+    } else {
+      setIsUserDataAvailable(false); 
+    }
+  }, []);
+  
   const navigate = useNavigate();
     const handleNavigate = (checkLogin: boolean) => {
     if (checkLogin) {
@@ -39,7 +58,7 @@ const MiddleCompartmentOnHub: React.FC = () => {
                   <span>Short description......</span>
                 </div>
                 <div>
-                  <button className={`${styles.btnSuccessHomeSignIn} ${styles.btnSuccessHomeSignIn}`}  onClick={()=>handleNavigate(false)}>
+                  <button className={`${styles.btnSuccessHomeSignIn} ${!props.isUserDataAvailable ? styles.btnDisable : ''}`}  onClick={()=>handleNavigate(false)} disabled = {!props.isUserDataAvailable} >
                     Use now
                   </button>
                 </div>
@@ -70,7 +89,7 @@ const MiddleCompartmentOnHub: React.FC = () => {
                   <span>Short description......</span>
                 </div>
                 <div>
-                  <button className={`${styles.btnSuccessHomeSignIn} ${styles.btnSuccessHomeSignIn}`} type="button" onClick={()=>handleNavigate(true)}>
+                  <button className={`${styles.btnSuccessHomeSignIn} ${!props.isUserDataAvailable ? styles.btnDisable : ''}`} type="button" onClick={()=>handleNavigate(true)} disabled = {!props.isUserDataAvailable}>
                     Use now
                   </button>
                 </div>

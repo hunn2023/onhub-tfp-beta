@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, FormLayout, TextField } from "@shopify/polaris";
 import styles from "../apphomePage.module.css";
 import ForgetPasswordModal from '../modals/ForgetPasswordModal';
@@ -34,25 +34,51 @@ const LoginFormOnHub: React.FC<LoginFormProps> = ({
   initNameStore,
   showToast
 }) => {
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const [checkEmail, setCheckEmail] = useState('');
+  const [checkPassword, setCheckPassword] = useState('');
+
+  const validateField = (text: string) => {
+    setEmail(text);
+    if (!text) {
+      setCheckEmail('Email information cannot be left blank, please enter it again.');
+    } else {
+      if (!text.includes('@')) {
+        setCheckEmail('Incorrect email address, please try again!');
+      } else if (!emailPattern.test(text)) {
+        setCheckEmail('Invalid email address, please try again!');
+      } else {
+        setCheckEmail('');
+      }
+    }
+  };
+const validatePassword = (password: string) => {
+    setPassword(password);
+    if (!password) {
+      setCheckPassword('Password information cannot be left blank, please enter it again.');
+    }
+  };
   return (
     <Form onSubmit={handleSubmit}>
       <div className={styles.contentLayoutForm}>
         <FormLayout>
           <TextField
             value={email}
-            onChange={(value) => setEmail(value)}
+            onChange={(value) => validateField(value)}
             label="Email"
             type="email"
             autoComplete='off'
             placeholder='Email'
+            error={checkEmail}
           />
           <TextField
             value={password}
-            onChange={(value) => setPassword(value)}
+            onChange={(value) => validatePassword(value)}
             label="Password"
             type="password"
             autoComplete="off"
             placeholder='Password'
+            error={checkPassword}
           />
         </FormLayout>
       </div>
