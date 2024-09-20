@@ -4,8 +4,8 @@ import {useNavigate} from "react-router";
 import ConfigOnHub from "~/routes/rootOnHubs/configOnhub";
 import type {User} from "./Core/services/userServices";
 import styles from "./components/apphomePage.module.css";
-import TitleOnHub from "../routes/components/UI/titleOnHub";
-import Constants from "../routes/Core/Helpers/constants";
+import TitleOnHub from "~/routes/components/UI/titleOnHub";
+import Constants from "~/routes/Core/Helpers/constants";
 export default function Dashboard() {
   const baseUrlFe = ConfigOnHub.HOST_MODULAR_FE;
   const [url, setUrl] = useState('');
@@ -45,7 +45,7 @@ export default function Dashboard() {
   const handleMessage = (event: MessageEvent) => {
     if (event.origin.includes(baseUrlFe)) {
       try {
-        
+
         const dataConvert = JSON.parse(event.data);
         const userData = localStorage.getItem('userDataKey');
         const shopifyStoreId = localStorage.getItem("ShopifyStoreId") ?? "";
@@ -66,7 +66,7 @@ export default function Dashboard() {
   };
   return (
     <>
-      <TitleOnHub    
+      <TitleOnHub
           welcomeText = {Constants.DEFAULT_WELCOMETEXT}
           helpCenterLink={Constants.DEFAULT_HELPER_LINK}
         />

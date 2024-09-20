@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\SourceTechDigital\\ontik\\src\\OnHub.Hosted\\OnHub.ShopifyApp\\OnHub.ShopifyApp.csproj": {}
+    "D:\\SourceTechDigital\\ShopifyApp-Beta-2\\onhub-tfp-beta\\OnHub.ShopifyApp.csproj": {}
   },
   "projects": {
-    "D:\\SourceTechDigital\\ontik\\src\\OnHub.Hosted\\OnHub.ShopifyApp\\OnHub.ShopifyApp.csproj": {
+    "D:\\SourceTechDigital\\ShopifyApp-Beta-2\\onhub-tfp-beta\\OnHub.ShopifyApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SourceTechDigital\\ontik\\src\\OnHub.Hosted\\OnHub.ShopifyApp\\OnHub.ShopifyApp.csproj",
+        "projectUniqueName": "D:\\SourceTechDigital\\ShopifyApp-Beta-2\\onhub-tfp-beta\\OnHub.ShopifyApp.csproj",
         "projectName": "OnHub.ShopifyApp",
-        "projectPath": "D:\\SourceTechDigital\\ontik\\src\\OnHub.Hosted\\OnHub.ShopifyApp\\OnHub.ShopifyApp.csproj",
+        "projectPath": "D:\\SourceTechDigital\\ShopifyApp-Beta-2\\onhub-tfp-beta\\OnHub.ShopifyApp.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\SourceTechDigital\\ontik\\src\\OnHub.Hosted\\OnHub.ShopifyApp\\obj\\",
+        "outputPath": "D:\\SourceTechDigital\\ShopifyApp-Beta-2\\onhub-tfp-beta\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",

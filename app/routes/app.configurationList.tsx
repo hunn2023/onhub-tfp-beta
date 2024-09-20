@@ -4,7 +4,7 @@ import ConfigOnHub from "~/routes/rootOnHubs/configOnhub";
 import type { User } from "./Core/services/userServices";
 import styles from "./components/apphomePage.module.css";
 import { useNavigate } from "@remix-run/react";
-import TitleOnHub from "../routes/components/UI/titleOnHub";
+import TitleOnHub from "~/routes/components/UI/titleOnhub";
 import Constants from "./Core/Helpers/constants";
 
 export default function ConfigurationList() {
@@ -68,7 +68,7 @@ export default function ConfigurationList() {
   }, []);
   return (
     <>
-    <TitleOnHub    
+    <TitleOnHub
           welcomeText = {Constants.DEFAULT_WELCOMETEXT}
           helpCenterLink={Constants.DEFAULT_HELPER_LINK}
         />

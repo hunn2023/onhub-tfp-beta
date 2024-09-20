@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8lHK38QwcEukxBcdI/mMZSM5TjZt2OFLePE2RLzJ8nV71TZKyllB/H2ZmUKh6YcVVEHR0va3S+ecBdTqXr7LTg==",
+  "dgSpecHash": "UeaRgcOXvuybtjm68zB1LJP1mpebr/FVnp83rHkgdOwRrRiAhRj7mMeoAQQuY3jbxKsfIvJQ+YK84SaXbQj9TA==",
   "success": true,
-  "projectFilePath": "D:\\SourceTechDigital\\ontik\\src\\OnHub.Hosted\\OnHub.ShopifyApp\\OnHub.ShopifyApp.csproj",
+  "projectFilePath": "D:\\SourceTechDigital\\ShopifyApp-Beta-2\\onhub-tfp-beta\\OnHub.ShopifyApp.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
