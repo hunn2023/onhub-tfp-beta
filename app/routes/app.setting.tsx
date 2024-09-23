@@ -7,8 +7,10 @@ import {User} from "~/routes/Core/services/userServices";
 import {MessageParentName} from "~/routes/_index/messageParentName";
 import TitleOnHub from "./components/UI/titleOnhub";
 
+
 export default function Setting() {
   const [url, setUrl] = useState('');
+  const [showContent, setShowContent] = useState(true)
   const baseUrlFe = ConfigOnHub.HOST_MODULAR_FE;
   const location = useLocation();
   const navigate = useNavigate();
@@ -27,8 +29,10 @@ export default function Setting() {
     const shopifyStoreId = parsedNameStore?.shop?.id ?? "";
 
     if (redirectTo == "ConfigurationFraudPrevention"){
+      setShowContent(true)
       setUrl(`${baseUrlFe}/configuration/fraud/prevention?user_id=${parsedDataUser?.id ?? ""}&shopifyStoreId=${shopifyStoreId}&nameStore=${encodedNameStore}`)
     }else if(redirectTo == "SettingFraudPrevention"){
+      setShowContent(false)
       setUrl(location.state.userSettingFraudPrevention + `&shopifyStoreId=${shopifyStoreId ?? ""}&nameStore=${encodedNameStore}`)
     }else{
       navigate('/app');
@@ -45,7 +49,7 @@ export default function Setting() {
     <>
       <>
         <TitleOnHub
-          welcomeText={Constants.PREVENTION_CONFIGURATION}
+          welcomeText={showContent ? Constants.PREVENTION_CONFIGURATION : Constants.FRAUD_PREVENTION_SETTING }
           helpCenterLink={Constants.DEFAULT_HELPER_LINK}
         />
         <iframe src={url} className={styles.screenIframe}/>

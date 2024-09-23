@@ -1,6 +1,6 @@
 import ConfigOnHub from "~/routes/rootOnHubs/configOnhub";
 
-export function MessageParentName(event: MessageEvent, navigate: any) {
+export function MessageParentName(event: MessageEvent, navigate: Function) {
   const baseUrlFe = ConfigOnHub.HOST_MODULAR_FE;
   if (event.origin.includes(baseUrlFe)) {
     try {
@@ -20,10 +20,6 @@ export function MessageParentName(event: MessageEvent, navigate: any) {
         } else {
           navigate('/app');
         }
-      } else if (dataConvert.messageName === 'NOTICE_SUCCESS') {
-        shopify.toast.show(dataConvert.data.mess, {duration: 3000});
-      } else if (dataConvert.messageName === 'NOTICE_ERROR') {
-        shopify.toast.show(dataConvert.data.mess, {duration: 3000, isError: true});
       }
     } catch (error) {
       navigate('/app');
