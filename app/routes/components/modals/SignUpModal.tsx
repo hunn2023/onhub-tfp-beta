@@ -211,7 +211,7 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
       activator={props.activator}
       open={showActive}
       onClose={props.handleChange}
-      title="Sign Up OnHub Account">
+      title="">
 
       <div className={styles.modalSignUpMarggin}>
         <Modal.Section>

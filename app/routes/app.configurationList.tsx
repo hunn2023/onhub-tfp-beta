@@ -6,7 +6,7 @@ import styles from "./components/apphomePage.module.css";
 import {useNavigate} from "@remix-run/react";
 import Constants from "./Core/Helpers/constants";
 import {MessageParentName} from "~/routes/_index/messageParentName";
-import TitleOnHub from "~/routes/components/UI/titleOnhub";
+import TitleOnHub from "./components/UI/titleOnhub";
 
 export default function ConfigurationList() {
   const baseUrlFe = ConfigOnHub.HOST_MODULAR_FE;
@@ -58,8 +58,8 @@ export default function ConfigurationList() {
   return (
     <>
       <TitleOnHub
-        welcomeText="Fraud Prevention Setting"
-        helpCenterLink=""
+        welcomeText={Constants.PREVENTION_CONFIGURATION}
+        helpCenterLink={Constants.DEFAULT_HELPER_LINK}
       />
       <iframe title="" src={url} className={styles.screenIframe}/>
     </>

@@ -10,8 +10,6 @@ import LoginFormOnHub from "./UI/loginFormOnHub";
 import AsideOnHub from "./UI/asideOnHub";
 import MiddleCompartmentOnHub from "./UI/middleCompartmentOnHub";
 import configOnHub from "../rootOnHubs/configOnhub";
-import TitleOnHub from "../routes/components/UI/titleOnHub";
-import Constants from "~/routes/Core/Helpers/constants";
 
 const Apphomepage = () => {
   const [email, setEmail] = useState('');
@@ -134,10 +132,6 @@ const Apphomepage = () => {
 
   return (
     <Frame>
-      <TitleOnHub
-        welcomeText = {Constants.DEFAULT_WELCOMETEXT}
-        helpCenterLink={Constants.DEFAULT_HELPER_LINK}
-      />
       <Page>
         <Grid>
           <Grid.Cell columnSpan={{ xs: 6, sm: 6, md: 6, lg: 8, xl: 8 }}>

@@ -12,18 +12,14 @@ const TitleOnHub: React.FC<TitleComponentProps> = ({ welcomeText, helpCenterLink
       <div className={styles.textWelcome}>
         {welcomeText}
       </div>
-      {
-        helpCenterLink && (
-          <a
-            href={helpCenterLink}
-            rel="noreferrer"
-            target="_blank"
-            className={styles.helpCenter}
-          >
-            Help Center
-          </a>
-        )
-      }
+      <a
+        href={helpCenterLink}
+        rel="noreferrer"
+        target="_blank"
+        className={styles.helpCenter}
+      >
+        Help Center
+      </a>
     </div>
   );
 };
