@@ -126,7 +126,7 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
       }
     }
     else {
-      props.showToast("IsValid form null !");
+      //props.showToast("IsValid form null !");
     }
   };
 
