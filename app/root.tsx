@@ -49,11 +49,6 @@ export default function App() {
   }, []);
 
 
-  useEffect(() => {
-      window.location.reload();
-  }, [ShopInfo]);
-
-
   return (
     <html>
     <head>
