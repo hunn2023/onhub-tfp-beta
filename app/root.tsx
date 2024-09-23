@@ -26,38 +26,47 @@ export async function loader({request}: LoaderFunctionArgs) {
   const result = await response.json();
   return json(result.data);
 }
+
 export default function App() {
-  const ShopInfo =  useLoaderData<typeof loader>();
+  const ShopInfo = useLoaderData<typeof loader>();
 
   useEffect(() => {
-    localStorage.setItem("ShopInfo", JSON.stringify(ShopInfo));
-    const shopData = localStorage.getItem('ShopInfo');
-    if (shopData) {
-      const shopDataInfor = JSON.parse(shopData) ?? null;
-      const splitShopData = shopDataInfor.shop.id.split('/');
-      localStorage.setItem("ShopifyStoreId", splitShopData[splitShopData.length - 1] ?? "")
+    // Clear ShopifyStoreId and usserData.
+    const splitShopData = ShopInfo.shop.id.split('/');
+    const shopifyStoreId = splitShopData[splitShopData.length - 1];
+    let ShopInfoConvert = {
+      shop: {
+        id: shopifyStoreId,
+        name: ShopInfo.shop.name,
+        url: ShopInfo.shop.url,
+        myshopifyDomain: ShopInfo.shop.myshopifyDomain,
+      }
     }
+    
+    localStorage.setItem("ShopInfo", JSON.stringify(ShopInfoConvert));
+    localStorage.setItem("ShopifyStoreId", shopifyStoreId ?? "");
+
   }, []);
 
 
   return (
     <html>
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <link rel="preconnect" href="https://cdn.shopify.com/" />
-        <link
-          rel="stylesheet"
-          href="https://cdn.shopify.com/static/fonts/inter/v4/styles.css"
-        />
-        <Meta />
-        <Links />
-      </head>
-      <body>
-        <Outlet />
-        <ScrollRestoration />
-        <Scripts />
-      </body>
+    <head>
+      <meta charSet="utf-8"/>
+      <meta name="viewport" content="width=device-width,initial-scale=1"/>
+      <link rel="preconnect" href="https://cdn.shopify.com/"/>
+      <link
+        rel="stylesheet"
+        href="https://cdn.shopify.com/static/fonts/inter/v4/styles.css"
+      />
+      <Meta/>
+      <Links/>
+    </head>
+    <body>
+    <Outlet/>
+    <ScrollRestoration/>
+    <Scripts/>
+    </body>
     </html>
   );
 }

@@ -4,6 +4,7 @@
 }
 
 .headerTitleText {
+  font-family: Inter;
   color: #0061C1;
   font-size: 20px;
   font-weight: 700;
@@ -232,9 +233,9 @@
   display: flex;
   justify-content: space-between;
   padding: 17px;
-  border-bottom: 1px solid #979797; 
-  border-left: none; 
-  border-top: none; 
+  border-bottom: 1px solid #979797;
+  border-left: none;
+  border-top: none;
   border-right: none;
 }
 .textWelcome {
@@ -258,19 +259,19 @@
     align-items: center;
     padding: 16px;
   }
-  
+
   .customTitleBar h1 {
     color: #0061C1;
     font-size: 24px;
     margin: 0;
   }
-  
+
   .customTitleBar .helpCenterLink {
     color: #0061C1;
     text-decoration: none;
     font-size: 14px;
   }
-  
+
   .customTitleBar .helpCenterLink:hover {
     text-decoration: underline;
   }

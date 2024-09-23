@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OnHub.ShopifyApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+79d995f922d9a2ae0cccb5ae416efb344cac0ff9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8764173453876bea8a5a1dd5e858bf5ad8c1e8c5")]
 [assembly: System.Reflection.AssemblyProductAttribute("OnHub.ShopifyApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OnHub.ShopifyApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

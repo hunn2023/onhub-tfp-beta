@@ -17,7 +17,7 @@ interface SignUpModalProps {
 const SignUpModal: React.FC<SignUpModalProps> = (props) => {
   // Regular Expressions
   const phonePattern = /^\+?[0-9]{10,15}$/;
-  const fullNamePattern = /^[a-zA-Z0-9]+(?: [a-zA-Z0-9]+)*$/;
+  const fullNamePattern = /^[a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯưĂẵăÂâÊêÔôƠơƯưạảấầẩẫậắằẳẵặẹẻẽềếểễệịỉọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ\s]+$/;
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const roleUser = 'Business';
@@ -211,7 +211,7 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
       activator={props.activator}
       open={showActive}
       onClose={props.handleChange}
-      title={undefined}    >
+      title="Sign Up OnHub Account">
 
       <div className={styles.modalSignUpMarggin}>
         <Modal.Section>
@@ -224,7 +224,7 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
                 <Form onSubmit={handleSubmitSignUp}>
                   <FormLayout>
                     <div className={styles.bodyFlexCenter}>
-                      <img src="images/icon-Main.svg" alt={"logo"} />
+                      <img src="../../public/images/icon-Main.svg" alt={"logo"} />
                     </div>
                     <TextField
                       maxHeight={100}

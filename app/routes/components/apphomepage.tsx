@@ -10,6 +10,8 @@ import LoginFormOnHub from "./UI/loginFormOnHub";
 import AsideOnHub from "./UI/asideOnHub";
 import MiddleCompartmentOnHub from "./UI/middleCompartmentOnHub";
 import configOnHub from "../rootOnHubs/configOnhub";
+import TitleOnHub from "../routes/components/UI/titleOnHub";
+import Constants from "~/routes/Core/Helpers/constants";
 
 const Apphomepage = () => {
   const [email, setEmail] = useState('');
@@ -22,7 +24,7 @@ const Apphomepage = () => {
   const [url, setUrl] = useState('');
   const [nameStore, setNameStore] = useState('');
   const [myshopifyDomain, setMyshopifyDomain] = useState('');
-  const [isUserDataAvailable, setIsUserDataAvailable] = useState(false); 
+  const [isUserDataAvailable, setIsUserDataAvailable] = useState(false);
 
   useEffect(() => {
     let shopInfo = localStorage.getItem("ShopInfo") ?? "";
@@ -32,8 +34,7 @@ const Apphomepage = () => {
       const url = shopData.shop.url;
       const domain = shopData.shop.myshopifyDomain;
       const name = shopData.shop.name;
-      const splitShopData = shopData.shop.id.split('/');
-      setShopifyStoreId(splitShopData[splitShopData.length - 1] ?? "");
+      setShopifyStoreId(shopData.shop.id ?? "");
       setUrl(url ?? "");
       setNameStore(name ?? "");
       setMyshopifyDomain(domain ?? "");
@@ -61,10 +62,13 @@ const Apphomepage = () => {
   const handleSignUp = () => {
     setSignUpNow(!signUpNow);
   }
-  
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     event.stopPropagation();
+    localStorage.removeItem('accessTokenKey');
+    localStorage.removeItem('userDataKey');
+
     try {
       const response = await fetch(configOnHub.HOST_ONHUB_BE + '/identity/api/auth/sign-in', {
         method: 'POST',
@@ -81,7 +85,7 @@ const Apphomepage = () => {
       });
       const data = await response.json();
       if (response.ok) {
-        
+
         const domainWebShopifyResult = await fetch(configOnHub.HOST_MODULAR_BE + '/modular/api/setting/save-website-shopify', {
           method: 'POST',
           headers: {
@@ -99,8 +103,7 @@ const Apphomepage = () => {
         const accessToken = data.data;
         const userInfos = decodeToken(accessToken);
         setUserData(userInfos);
-        setLoginSuccess(true);
-        setIsUserDataAvailable(true); 
+        window.location.reload();
       } else {
         showToast(data.message);
       }
@@ -114,9 +117,9 @@ const Apphomepage = () => {
     localStorage.removeItem('userDataKey');
     setEmail('');
     setPassword('');
-    setLoginSuccess(false);
-    setIsUserDataAvailable(false); 
+    window.location.reload();
   };
+
   // Toast message
   const [toastMessage, setToastMessage] = useState('');
   const [toastActive, setToastActive] = useState(false);
@@ -131,6 +134,10 @@ const Apphomepage = () => {
 
   return (
     <Frame>
+      <TitleOnHub
+        welcomeText = {Constants.DEFAULT_WELCOMETEXT}
+        helpCenterLink={Constants.DEFAULT_HELPER_LINK}
+      />
       <Page>
         <Grid>
           <Grid.Cell columnSpan={{ xs: 6, sm: 6, md: 6, lg: 8, xl: 8 }}>

@@ -30,7 +30,7 @@ const MiddleCompartmentOnHub: React.FC<MiddleCompartmentOnHubProps> = (props) =>
                     objectFit: 'cover',
                     objectPosition: 'center',
                   }}
-                  src="images/img_Dashboard.png"
+                  src="~/../public/images/img_Dashboard.png"
                 />
               </div>
               <div className={styles.contentOnhubHalf}>
@@ -61,7 +61,7 @@ const MiddleCompartmentOnHub: React.FC<MiddleCompartmentOnHubProps> = (props) =>
                     objectFit: 'cover',
                     objectPosition: 'center',
                   }}
-                  src="images/img_ConfigurationList.png"
+                  src="~/../public/images/img_ConfigurationList.png"
                 />
               </div>
               <div className={styles.contentOnhubHalf}>
