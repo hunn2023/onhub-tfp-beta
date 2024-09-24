@@ -30,27 +30,27 @@ export async function loader({request}: LoaderFunctionArgs) {
 
 export default function App() {
   const ShopInfo = useLoaderData<typeof loader>();
-  const handleVisibilityChange = () => {
-    const tabActive = !document.hidden;
-    const shopInfo = localStorage.getItem('ShopInfo');
-    const parsedNameStore = shopInfo ? JSON.parse(shopInfo) : null;
-    const myshopifyDomainParse = parsedNameStore?.shop?.myshopifyDomain ?? "";
-    console.log("active:" + tabActive);
-    if (tabActive){
-      const regex = /[?&]shop=([^&]+)/;
-      const match = window.location.href.match(regex);
-      console.log("shopMatch:"  + match);
-      console.log("myshopifyDomainParse:"  + myshopifyDomainParse);
-      if (match && match[1]) {
-        const  shopMatch = decodeURIComponent(match[1]);        
-        if(shopMatch !== myshopifyDomainParse) {
-          window.location.reload();
-        }
-      }
-    }
- };
+//   const handleVisibilityChange = () => {
+//     const tabActive = !document.hidden;
+//     const shopInfo = localStorage.getItem('ShopInfo');
+//     const parsedNameStore = shopInfo ? JSON.parse(shopInfo) : null;
+//     const myshopifyDomainParse = parsedNameStore?.shop?.myshopifyDomain ?? "";
+//     console.log("active:" + tabActive);
+//     if (tabActive){
+//       const regex = /[?&]shop=([^&]+)/;
+//       const match = window.location.href.match(regex);
+//       console.log("shopMatch:"  + match);
+//       console.log("myshopifyDomainParse:"  + myshopifyDomainParse);
+//       if (match && match[1]) {
+//         const  shopMatch = decodeURIComponent(match[1]);        
+//         if(shopMatch !== myshopifyDomainParse) {
+//           window.location.reload();
+//         }
+//       }
+//     }
+//  };
   useEffect(() => {
-    document.addEventListener("visibilitychange", handleVisibilityChange);
+    //document.addEventListener("visibilitychange", handleVisibilityChange);
     const checkShopifyStore = async (shopifyStoreId : string) => {
       try {
         const response = await fetch(`${configOnHub.HOST_ONHUB_BE}/dynamic/api/shopify/checkShopifyStoreExist?shopifyStoreId=${shopifyStoreId}`, {
