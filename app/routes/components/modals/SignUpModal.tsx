@@ -230,7 +230,7 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
                       <Form onSubmit={handleSubmitSignUp}>
                         <FormLayout>
                           <div className={styles.bodyFlexCenter}>
-                            <img src="../../public/images/icon-Main.svg" alt={"logo"} />
+                            <img src="images/icon-Main.svg" alt={"logo"} />
                           </div>
                           <TextField
                             maxHeight={100}
