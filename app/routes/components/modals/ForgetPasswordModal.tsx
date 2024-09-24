@@ -46,11 +46,12 @@ const ForgetPasswordModal: React.FC<ForgetPasswordModalProps> = (props) => {
             confirmPassword: confirmPassword,
           }),
         });
+        let data = await response.json();
         if (response.ok) {
           setCheckSucces(true);
         }
         else {
-          props.showToast("Forgot password failed.");
+          props.showToast(data?.message.toString());
         }
       } catch (error) {
         props.showToast("Something went wrong, please try again!");
