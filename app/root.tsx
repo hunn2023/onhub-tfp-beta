@@ -50,8 +50,8 @@ export default function App() {
 //     }
 //  };
   useEffect(() => {
-    window.location.reload();
-    
+    //
+
     //document.addEventListener("visibilitychange", handleVisibilityChange);
     const checkShopifyStore = async (shopifyStoreId : string) => {
       try {
@@ -92,6 +92,11 @@ export default function App() {
     //   document.removeEventListener("visibilitychange", handleVisibilityChange);
     // };
   }, []);
+
+
+    useEffect(() => {
+        window.location.reload();
+    }, [window.location]);
 
 
   return (
