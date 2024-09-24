@@ -69,6 +69,7 @@ const Apphomepage = () => {
     localStorage.removeItem('accessTokenKey');
     localStorage.removeItem('userDataKey');
     localStorage.removeItem('ShopInfo')
+    localStorage.clear();
     setEmail('');
     setPassword('');
     window.location.reload();
