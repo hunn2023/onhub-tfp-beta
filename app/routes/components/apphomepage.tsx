@@ -24,9 +24,11 @@ const Apphomepage = () => {
 
   useEffect(() => {
     let shopInfo = localStorage.getItem("ShopInfo") ?? "";
+    console.log("new shopInfo: " + shopInfo);
     let localChangeUser = localStorage.getItem('userDataKey');
+    let shopData;
     if (shopInfo) {
-      const shopData = JSON.parse(shopInfo);
+      shopData = JSON.parse(shopInfo);
       const url = shopData.shop.url;
       const domain = shopData.shop.myshopifyDomain;
       const name = shopData.shop.name;
@@ -35,10 +37,14 @@ const Apphomepage = () => {
       setNameStore(name ?? "");
       setMyshopifyDomain(domain ?? "");
     }
+    else{
+      console.log('shopInfo undefined or null');
+    }
     if (localChangeUser) {
       let parentLocalChangeUser = JSON.parse(localChangeUser) as User;
       let dataNow = new Date().getTime();
       let expPrefix = parentLocalChangeUser?.exp ?? dataNow;
+      shopData = JSON.parse(shopInfo);
       if (expPrefix < dataNow) {
         setUserData(parentLocalChangeUser);
         setEmail(parentLocalChangeUser.email);
@@ -62,6 +68,7 @@ const Apphomepage = () => {
   const handleChangeAccount = () => {
     localStorage.removeItem('accessTokenKey');
     localStorage.removeItem('userDataKey');
+    localStorage.removeItem('ShopInfo')
     setEmail('');
     setPassword('');
     window.location.reload();
