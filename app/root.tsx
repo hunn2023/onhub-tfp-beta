@@ -50,6 +50,8 @@ export default function App() {
 //     }
 //  };
   useEffect(() => {
+    window.location.reload();
+    
     //document.addEventListener("visibilitychange", handleVisibilityChange);
     const checkShopifyStore = async (shopifyStoreId : string) => {
       try {
