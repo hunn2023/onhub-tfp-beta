@@ -6,7 +6,7 @@ import type {User} from "./Core/services/userServices";
 import styles from "./components/apphomePage.module.css";
 import Constants from "../routes/Core/Helpers/constants";
 import {MessageParentName} from "~/routes/_index/messageParentName";
-import TitleOnHub from "./components/UI/titleOnhub";
+import TitleOnHub from "~/routes/components/UI/titleOnhub";
 
 export default function Dashboard() {
   const baseUrlFe = ConfigOnHub.HOST_MODULAR_FE;

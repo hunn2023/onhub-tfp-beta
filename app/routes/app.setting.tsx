@@ -5,8 +5,7 @@ import ConfigOnHub from "~/routes/rootOnHubs/configOnhub";
 import {useLocation, useNavigate} from "@remix-run/react";
 import {User} from "~/routes/Core/services/userServices";
 import {MessageParentName} from "~/routes/_index/messageParentName";
-import TitleOnHub from "./components/UI/titleOnhub";
-
+import TitleOnHub from "~/routes/components/UI/titleOnhub";
 
 export default function Setting() {
   const [url, setUrl] = useState('');

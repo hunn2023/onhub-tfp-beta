@@ -8,9 +8,9 @@ interface SignUpModalProps {
   activator: ReactElement;
   active: boolean;
   handleChange: () => void;
-  initShopifyStoreId: string;
-  initWebsiteUrl: string;
-  initNameStore : string;
+  shopifyStoreId: string;
+  websiteUrl: string;
+  nameStore : string;
   showToast: (message: string) => void;
 }
 
@@ -22,7 +22,7 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
 
   const roleUser = 'Business';
   const sourceRef = 'Shopify';
-  const { initShopifyStoreId, initWebsiteUrl, initNameStore } = props;
+  const { shopifyStoreId, websiteUrl, nameStore } = props;
 
   useEffect(() => {
     setShowActive(props.active);
@@ -69,7 +69,7 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
     if (!fullName || !email || !phoneNumber || !password || !confirmPassword) {
       isValid = false;
     }
-    if (!initShopifyStoreId || !initWebsiteUrl) {
+    if (!shopifyStoreId || !websiteUrl) {
         isValid = false;
         props.showToast("Shopify Store ID and Website URL cannot be null or undefined.");
     }
@@ -91,9 +91,9 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
               confirmPassword: confirmPassword,
               role : roleUser,
               signature: '',
-              shopifyStoreId: initShopifyStoreId,
-              websiteUrl: initWebsiteUrl,
-              nameStore : initNameStore,
+              shopifyStoreId: shopifyStoreId,
+              websiteUrl: websiteUrl,
+              nameStore : nameStore,
               sourceRef : sourceRef
             }
           ),
@@ -126,7 +126,7 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
       }
     }
     else {
-      //props.showToast("IsValid form null !");
+      console.log('IsValid form null!');
     }
   };
 
@@ -224,7 +224,7 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
                 <Form onSubmit={handleSubmitSignUp}>
                   <FormLayout>
                     <div className={styles.bodyFlexCenter}>
-                      <img src="images/icon-Main.svg" alt={"logo"} />
+                      <img src="../../public/images/icon-Main.svg" alt={"logo"} />
                     </div>
                     <TextField
                       maxHeight={100}

@@ -8,6 +8,7 @@ import {
 import shopify from '~/shopify.server';
 import {json, LoaderFunctionArgs} from '@remix-run/node';
 import {useEffect} from "react";
+import configOnHub from "./routes/rootOnHubs/configOnhub";
 
 export async function loader({request}: LoaderFunctionArgs) {
   const {admin} = await shopify.authenticate.admin(request);
@@ -31,7 +32,28 @@ export default function App() {
   const ShopInfo = useLoaderData<typeof loader>();
 
   useEffect(() => {
-    // Clear ShopifyStoreId and usserData.
+    const checkShopifyStore = async () => {
+      try {
+        const response = await fetch(`${configOnHub.HOST_ONHUB_BE}/dynamic/api/shopify/checkShopifyStoreExist`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        if(response.ok) {
+          const result = await response.json();
+          if(result === false) {
+            localStorage.removeItem('accessTokenKey');
+            localStorage.removeItem('userDataKey');
+          }
+        }
+      } catch (error) {
+        console.log('Shopify store already belongs to another customer.', error);
+      }
+    };
+     // Call api  Clear ShopifyStoreId and usserData.
+    localStorage.removeItem('ShopifyStoreId');
+    checkShopifyStore();
     const splitShopData = ShopInfo.shop.id.split('/');
     const shopifyStoreId = splitShopData[splitShopData.length - 1];
     let ShopInfoConvert = {
@@ -42,7 +64,7 @@ export default function App() {
         myshopifyDomain: ShopInfo.shop.myshopifyDomain,
       }
     }
-    
+
     localStorage.setItem("ShopInfo", JSON.stringify(ShopInfoConvert));
     localStorage.setItem("ShopifyStoreId", shopifyStoreId ?? "");
 

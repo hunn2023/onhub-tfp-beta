@@ -6,7 +6,7 @@ import styles from "./components/apphomePage.module.css";
 import {useNavigate} from "@remix-run/react";
 import Constants from "./Core/Helpers/constants";
 import {MessageParentName} from "~/routes/_index/messageParentName";
-import TitleOnHub from "./components/UI/titleOnhub";
+import TitleOnHub from "~/routes/components/UI/titleOnhub";
 
 export default function ConfigurationList() {
   const baseUrlFe = ConfigOnHub.HOST_MODULAR_FE;

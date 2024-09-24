@@ -3,39 +3,47 @@ import { Form, FormLayout, TextField } from "@shopify/polaris";
 import styles from "../apphomePage.module.css";
 import ForgetPasswordModal from '../modals/ForgetPasswordModal';
 import SignUpModal from '../modals/SignUpModal';
+import { decodeToken } from "../../Core/services/userServices";
+import type { User } from '../../Core/services/userServices';
+import configOnHub from "../../rootOnHubs/configOnhub";
 
 interface LoginFormProps {
   email: string;
   password: string;
   setEmail: (email: string) => void;
   setPassword: (password: string) => void;
-  handleSubmit: (event: React.FormEvent) => void;
   handleForgetPassword: () => void;
   handleSignUp: () => void;
   showForgetPassWord: boolean;
   signUpNow: boolean;
-  initShopifyStoreId: string;
-  initWebsiteUrl: string;
-  initNameStore : string;
+  shopifyStoreId: string;
+  websiteUrl: string;
+  nameStore : string;
   showToast: (message: string) => void;
+  setUserData: (userData: User | null) => void;
+  myshopifyDomain : string;
 }
 const LoginFormOnHub: React.FC<LoginFormProps> = ({
   email,
   password,
   setEmail,
   setPassword,
-  handleSubmit,
   handleForgetPassword,
   handleSignUp,
   showForgetPassWord,
   signUpNow,
-  initShopifyStoreId,
-  initWebsiteUrl,
-  initNameStore,
-  showToast
+  shopifyStoreId,
+  websiteUrl,
+  nameStore,
+  showToast,
+  setUserData,
+  myshopifyDomain,
 }) => {
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const [checkEmail, setCheckEmail] = useState('');
+  const [checkPassword, setCheckPassword] = useState('');
+
+
   const validateField = (text: string) => {
     setEmail(text);
     if (!text) {
@@ -50,26 +58,101 @@ const LoginFormOnHub: React.FC<LoginFormProps> = ({
       }
     }
   };
+  const validateFieldPassWord = (text: string) => {
+    setPassword(text);
+    if(text == null || text == '' || text == undefined){
+      setCheckPassword('Password information cannot be left blank, please enter it again');
+    }
+    else{
+      setCheckPassword('')
+    }
+  };
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    event.stopPropagation();
+    localStorage.removeItem('accessTokenKey');
+    localStorage.removeItem('userDataKey');
+    setCheckEmail('');
+    setCheckPassword('');
+    if (!email && !password) {
+      setCheckEmail('Email information cannot be left blank, please enter it again.');
+      setCheckPassword('Password information cannot be left blank, please enter it again.');
+      return;
+    }
+
+    if (!email) {
+      setCheckEmail('Email information cannot be left blank, please enter it again.');
+      return;
+    }
+
+    if (!password) {
+      setCheckPassword('Password information cannot be left blank, please enter it again.');
+      return;
+    }
+    try {
+      const response = await fetch(configOnHub.HOST_ONHUB_BE + '/identity/api/auth/sign-in', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          key: email,
+          password: password,
+          shopifyStoreId: shopifyStoreId,
+          websiteUrl : websiteUrl,
+          nameStore : nameStore
+        }),
+      });
+      const data = await response.json();
+      if (response.ok) {
+
+        const domainWebShopifyResult = await fetch(configOnHub.HOST_MODULAR_BE + '/modular/api/setting/save-website-shopify', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            shopifyStoreId: shopifyStoreId,
+            domainWebShopify: myshopifyDomain
+          }),
+        });
+        const dataShopifyResult = await domainWebShopifyResult.json();
+        if (domainWebShopifyResult.ok) {
+           console.log(dataShopifyResult);
+        }
+        const accessToken = data.data;
+        const userInfos = decodeToken(accessToken);
+        setUserData(userInfos);
+        window.location.reload();
+      } else {
+        showToast(data.message);
+      }
+    } catch (error) {
+      showToast('An error occurred while connecting to the server.')
+    }
+  };
+
   return (
     <Form onSubmit={handleSubmit}>
       <div className={styles.contentLayoutForm}>
         <FormLayout>
-          <TextField
+          <TextField 
             value={email}
             onChange={(value) => validateField(value)}
             label="Email"
             type="email"
-            autoComplete='off'
+            autoComplete='on'
             placeholder='Email'
             error={checkEmail}
           />
           <TextField
             value={password}
-            onChange={(value) => setPassword(value)}
+            onChange={(value) => validateFieldPassWord(value)}
             label="Password"
             type="password"
-            autoComplete="off"
+            autoComplete="on"
             placeholder='Password'
+            error={checkPassword}
           />
         </FormLayout>
       </div>
@@ -104,9 +187,9 @@ const LoginFormOnHub: React.FC<LoginFormProps> = ({
             }
             active={signUpNow}
             handleChange={handleSignUp}
-            initShopifyStoreId={initShopifyStoreId}
-            initWebsiteUrl={initWebsiteUrl}
-            initNameStore = {initNameStore}
+            shopifyStoreId={shopifyStoreId}
+            websiteUrl={websiteUrl}
+            nameStore = {nameStore}
             showToast={showToast}
           />
         </div>

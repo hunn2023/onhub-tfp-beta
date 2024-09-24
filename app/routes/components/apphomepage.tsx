@@ -2,14 +2,12 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Page, Grid, Card, Frame, Toast } from "@shopify/polaris";
 import styles from "./apphomePage.module.css";
 import type { User } from "../Core/services/userServices";
-import { decodeToken } from "../Core/services/userServices";
 import HeaderOnHub from "./UI/headerOnHub";
 import UserInfoOnHub from "./UI/userInfoOnHub";
 import SignUpModal from "./modals/SignUpModal";
 import LoginFormOnHub from "./UI/loginFormOnHub";
 import AsideOnHub from "./UI/asideOnHub";
 import MiddleCompartmentOnHub from "./UI/middleCompartmentOnHub";
-import configOnHub from "../rootOnHubs/configOnhub";
 
 const Apphomepage = () => {
   const [email, setEmail] = useState('');
@@ -61,55 +59,6 @@ const Apphomepage = () => {
     setSignUpNow(!signUpNow);
   }
 
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-    event.stopPropagation();
-    localStorage.removeItem('accessTokenKey');
-    localStorage.removeItem('userDataKey');
-
-    try {
-      const response = await fetch(configOnHub.HOST_ONHUB_BE + '/identity/api/auth/sign-in', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          key: email,
-          password: password,
-          shopifyStoreId: shopifyStoreId,
-          websiteUrl : url,
-          nameStore : nameStore
-        }),
-      });
-      const data = await response.json();
-      if (response.ok) {
-
-        const domainWebShopifyResult = await fetch(configOnHub.HOST_MODULAR_BE + '/modular/api/setting/save-website-shopify', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            shopifyStoreId: shopifyStoreId,
-            domainWebShopify: url
-          }),
-        });
-        const dataShopifyResult = await domainWebShopifyResult.json();
-        if (domainWebShopifyResult.ok) {
-           console.log(dataShopifyResult);
-        }
-        const accessToken = data.data;
-        const userInfos = decodeToken(accessToken);
-        setUserData(userInfos);
-        window.location.reload();
-      } else {
-        showToast(data.message);
-      }
-    } catch (error) {
-      showToast('An error occurred while connecting to the server.')
-    }
-  };
-
   const handleChangeAccount = () => {
     localStorage.removeItem('accessTokenKey');
     localStorage.removeItem('userDataKey');
@@ -150,9 +99,9 @@ const Apphomepage = () => {
                             Up Now</button>}
                           active={signUpNow}
                           handleChange={handleSignUp}
-                          initShopifyStoreId={shopifyStoreId}
-                          initWebsiteUrl={myshopifyDomain}
-                          initNameStore ={nameStore}
+                          shopifyStoreId={shopifyStoreId}
+                          websiteUrl={url}
+                          nameStore ={nameStore}
                           showToast={showToast}
                         />
                       </div>
@@ -172,15 +121,16 @@ const Apphomepage = () => {
                       password={password}
                       setEmail={setEmail}
                       setPassword={setPassword}
-                      handleSubmit={handleSubmit}
                       handleForgetPassword={handleForgetPassword}
                       handleSignUp={handleSignUp}
                       showForgetPassWord={showForgetPassWord}
                       signUpNow={signUpNow}
-                      initShopifyStoreId={shopifyStoreId}
-                      initWebsiteUrl={myshopifyDomain}
-                      initNameStore ={nameStore}
+                      shopifyStoreId={shopifyStoreId}
+                      websiteUrl={url}
+                      nameStore={nameStore}
                       showToast={showToast}
+                      setUserData={setUserData}
+                      myshopifyDomain = {myshopifyDomain}
                     />
                   </React.Fragment>
                 )}

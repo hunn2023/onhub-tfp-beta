@@ -87,7 +87,7 @@ const ForgetPasswordModal: React.FC<ForgetPasswordModalProps> = (props) => {
               ) : (
                 <div>
                   <div className={styles.bodyFlexCenter}>
-                    <img src="images/icon-Main.svg" alt={"logo"} />
+                    <img src="../../public/images/icon-Main.svg" alt={"logo"} />
                   </div>
                   <TextField
                     value={email}
