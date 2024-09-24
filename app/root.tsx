@@ -49,12 +49,13 @@ export default function App() {
         }
       }
     }
- };
+
   useEffect(() => {
     document.addEventListener("visibilitychange", handleVisibilityChange);
-    const checkShopifyStore = async () => {
+    
+    const checkShopifyStore = async (shopifyStoreId : string) => {
       try {
-        const response = await fetch(`${configOnHub.HOST_ONHUB_BE}/dynamic/api/shopify/checkShopifyStoreExist`, {
+        const response = await fetch(`${configOnHub.HOST_ONHUB_BE}/dynamic/api/shopify/checkShopifyStoreExist?shopifyStoreId=${shopifyStoreId}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -62,7 +63,7 @@ export default function App() {
         });
         if(response.ok) {
           const result = await response.json();
-          if(result === false) {
+          if(result == false) {
             localStorage.removeItem('accessTokenKey');
             localStorage.removeItem('userDataKey');
           }
@@ -73,7 +74,6 @@ export default function App() {
     };
      // Call api  Clear ShopifyStoreId and usserData.
     localStorage.removeItem('ShopifyStoreId');
-    checkShopifyStore();
     const splitShopData = ShopInfo.shop.id.split('/');
     const shopifyStoreId = splitShopData[splitShopData.length - 1];
     let ShopInfoConvert = {
@@ -84,7 +84,7 @@ export default function App() {
         myshopifyDomain: ShopInfo.shop.myshopifyDomain,
       }
     }
-
+    checkShopifyStore(shopifyStoreId);
     localStorage.setItem("ShopInfo", JSON.stringify(ShopInfoConvert));
     localStorage.setItem("ShopifyStoreId", shopifyStoreId ?? "");
 

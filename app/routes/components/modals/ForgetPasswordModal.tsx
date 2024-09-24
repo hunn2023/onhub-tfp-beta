@@ -19,7 +19,7 @@ const ForgetPasswordModal: React.FC<ForgetPasswordModalProps> = (props) => {
       setCheckSucces(false)
     };
   }, [props.active]);
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const [email, setEmail] = useState('');
   const [checkEmail, setCheckEmail] = useState('');
   const [checkSucces, setCheckSucces] = useState(false);
@@ -50,10 +50,10 @@ const ForgetPasswordModal: React.FC<ForgetPasswordModalProps> = (props) => {
           setCheckSucces(true);
         }
         else {
-          props.showToast("Forgot-password failed.");
+          props.showToast("Forgot password failed.");
         }
       } catch (error) {
-        props.showToast("An error occurred during from Server");
+        props.showToast("Something went wrong, please try again!");
       }
       isValid = true;
     }
@@ -87,7 +87,7 @@ const ForgetPasswordModal: React.FC<ForgetPasswordModalProps> = (props) => {
               ) : (
                 <div>
                   <div className={styles.bodyFlexCenter}>
-                    <img src="images/icon-Main.svg" alt={"logo"} />
+                    <img src="../../public/images/icon-Main.svg" alt={"logo"} />
                   </div>
                   <TextField
                     value={email}

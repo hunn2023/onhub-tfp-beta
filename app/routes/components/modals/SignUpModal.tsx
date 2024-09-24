@@ -18,28 +18,29 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
   // Regular Expressions
   const phonePattern = /^\+?[0-9]{10,15}$/;
   const fullNamePattern = /^[a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯưĂẵăÂâÊêÔôƠơƯưạảấầẩẫậắằẳẵặẹẻẽềếểễệịỉọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ\s]+$/;
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const roleUser = 'Business';
   const sourceRef = 'Shopify';
   const { shopifyStoreId, websiteUrl, nameStore } = props;
+
+  const resetFields = () => {
+    setEmail('');
+    setFullName('');
+    setPhoneNumber('');
+    setPasswordSignUp('');
+    setConfirmPassword('');
+    setCheckEmail('');
+    setCheckFullName('');
+    setCheckPhone('');
+    setCheckPassword('');
+    setCheckConfirmPassword('');
+  };
 
   useEffect(() => {
     setShowActive(props.active);
 
     return () => {
-      setEmail('');
-      setFullName('');
-      setPhoneNumber('');
-      setPasswordSignUp('');
-      setConfirmPassword('');
-
-      setCheckEmail('');
-      setCheckFullName('');
-      setCheckPhone('');
-      setCheckPassword('');
-      setConfirmPassword('');
-      setCheckConfirmPassword('');
+      resetFields();
     };
   }, [props.active]);
 
@@ -60,25 +61,42 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
   const handleSubmitSignUp = async (event: React.FormEvent) => {
     event.preventDefault();
     event.stopPropagation();
+    validateField(fullName, 'fullName');
+    validateField(phoneNumber, 'phoneNumber');
+    validateField(email, 'email');
+    validateField(password, 'password');
+    validateField(confirmPassword, 'confirmPassword');
+
     let isValid = true;
-    setCheckEmail(email ? '' : 'Email information cannot be left blank, please enter it again.');
-    setCheckPhone(phoneNumber ? '' : 'Phone number cannot be left blank, please enter it again.');
-    setCheckFullName(fullName ? '' : 'Full-name information cannot be left blank, please enter it again.');
-    setCheckPassword(password ? '' : 'Password information cannot be left blank, please enter it again.');
-    setCheckConfirmPassword(confirmPassword ? '' : 'Confirm Password information cannot be left blank, please enter it again.');
-    if (!fullName || !email || !phoneNumber || !password || !confirmPassword) {
+    
+     // Kiểm tra lại các lỗi
+     if (!fullName || checkFullName) {
       isValid = false;
     }
+    if (!phoneNumber || checkPhone) {
+      isValid = false;
+    }
+    if (!email || checkEmail) {
+      isValid = false;
+    }
+    if (!password || checkPassword) {
+      isValid = false;
+    }
+    if (!confirmPassword || checkConfirmPassword) {
+      isValid = false;
+    }
+
     if (!shopifyStoreId || !websiteUrl) {
         isValid = false;
         props.showToast("Shopify Store ID and Website URL cannot be null or undefined.");
     }
+    if (isValid && !newsletter) {
+      props.showToast("You need to accept the terms of service.");
+      return;
+    }
+    
     if (isValid) {
       try {
-        if(!newsletter){
-          props.showToast("You need to accept...");
-          return;
-        }
         const response = await fetch(configOnHub.HOST_ONHUB_BE + '/identity/api/auth/sign-up', {
             method: 'POST',
             headers: {
@@ -100,18 +118,7 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
 
         });
         if (response.ok) {
-          setEmail('');
-          setFullName('');
-          setPhoneNumber('');
-          setPasswordSignUp('');
-          setConfirmPassword('');
-
-          setCheckEmail('');
-          setCheckFullName('');
-          setCheckPhone('');
-          setCheckPassword('');
-          setConfirmPassword('');
-          setCheckConfirmPassword('');
+          resetFields();
           // Show modal message success
           setIsSignSuccess(true);
 
@@ -122,11 +129,8 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
         }
 
       } catch (error) {
-        props.showToast("An error occurred during from Server.");
+        props.showToast("Something went wrong, please try again!");
       }
-    }
-    else {
-      console.log('IsValid form null!');
     }
   };
 
@@ -215,88 +219,92 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
 
       <div className={styles.modalSignUpMarggin}>
         <Modal.Section>
-          {
-            isSignSuccess ? (
-              <SuccessMessageOnHub handleClose={handleCloseEventEmail} buttonText="Sign In Now" />
-            ) : (
+            <div>
+              <div className={styles.textModalTitles}>Sign Up OnHub Account</div>
               <div>
-                <div className={styles.textModalTitles}>Sign Up OnHub Account </div>
-                <Form onSubmit={handleSubmitSignUp}>
-                  <FormLayout>
-                    <div className={styles.bodyFlexCenter}>
-                      <img src="images/icon-Main.svg" alt={"logo"} />
+                 {
+                  isSignSuccess ? (
+                    <SuccessMessageOnHub handleClose={handleCloseEventEmail} buttonText="Sign In Now" />
+                  ) : (
+                    <div>
+                      <Form onSubmit={handleSubmitSignUp}>
+                        <FormLayout>
+                          <div className={styles.bodyFlexCenter}>
+                            <img src="../../public/images/icon-Main.svg" alt={"logo"} />
+                          </div>
+                          <TextField
+                            maxHeight={100}
+                            value={fullName}
+                            onChange={text => validateField(text, 'fullName')}
+                            label="Full-name"
+                            type="text"
+                            error={checkFullName}
+                            autoComplete='off'
+                            placeholder='Full-name'
+                          />
+                          <TextField
+                            value={phoneNumber}
+                            onChange={text => validateField(text, 'phoneNumber')}
+                            label="Phone number"
+                            type="text"
+                            error={checkPhone}
+                            autoComplete='off'
+                            placeholder='Phone number'
+                          />
+                          <TextField
+                            value={email}
+                            onChange={text => validateField(text, 'email')}
+                            label="Email"
+                            type="text"
+                            error={checkEmail}
+                            autoComplete='off'
+                            placeholder='Email'
+                          />
+                          <TextField
+                            value={password}
+                            onChange={text => validateField(text, 'password')}
+                            label="Password"
+                            type="password"
+                            error={checkPassword}
+                            autoComplete='off'
+                            placeholder='Password'
+                          />
+                          <TextField
+                            value={confirmPassword}
+                            onChange={text => validateField(text, 'confirmPassword')}
+                            label="Confirm Password"
+                            type="password"
+                            error={checkConfirmPassword}
+                            autoComplete='off'
+                            placeholder='Confirm Password'
+                          />
+                          <div className={styles.bodyFlexFooter}>
+                            <Checkbox
+                              checked={newsletter}
+                              onChange={handleNewsLetterChange}
+                              label={""}
+                            />
+                            <div>
+                              I have read and accepted
+                            </div>
+                            <div className={styles.textAccepted}>
+                              <a className={styles.textTheTermsLink}
+                                href="https://docs.novaonads.com/onhub/policy-and-terms-of-service" target="_blank"
+                                rel="noopener noreferrer">
+                                The terms of service
+                              </a>
+                            </div>
+                          </div>
+                          <div className={styles.btnFlexEnd}>
+                            <button type='button' onClick={handleSubmitSignUp} className={`${styles.btnSuccessHomeSignIn}`}>Sign Up</button>
+                          </div>
+                        </FormLayout>
+                      </Form>
                     </div>
-                    <TextField
-                      maxHeight={100}
-                      value={fullName}
-                      onChange={text => validateField(text, 'fullName')}
-                      label="Full-name"
-                      type="text"
-                      error={checkFullName}
-                      autoComplete='off'
-                      placeholder='Full-name'
-                    />
-                    <TextField
-                      value={phoneNumber}
-                      onChange={text => validateField(text, 'phoneNumber')}
-                      label="Phone number"
-                      type="text"
-                      error={checkPhone}
-                      autoComplete='off'
-                      placeholder='Phone number'
-                    />
-                    <TextField
-                      value={email}
-                      onChange={text => validateField(text, 'email')}
-                      label="Email"
-                      type="text"
-                      error={checkEmail}
-                      autoComplete='off'
-                      placeholder='Email'
-                    />
-                    <TextField
-                      value={password}
-                      onChange={text => validateField(text, 'password')}
-                      label="Password"
-                      type="password"
-                      error={checkPassword}
-                      autoComplete='off'
-                      placeholder='Password'
-                    />
-                    <TextField
-                      value={confirmPassword}
-                      onChange={text => validateField(text, 'confirmPassword')}
-                      label="Confirm Password"
-                      type="password"
-                      error={checkConfirmPassword}
-                      autoComplete='off'
-                      placeholder='Confirm Password'
-                    />
-                    <div className={styles.bodyFlexFooter}>
-                      <Checkbox
-                        checked={newsletter}
-                        onChange={handleNewsLetterChange}
-                        label={""}
-                      />
-                      <div>
-                        I have read and accepted
-                      </div>
-                      <div className={styles.textAccepted}>
-                        <a className={styles.textTheTermsLink}
-                          href="https://docs.novaonads.com/onhub/policy-and-terms-of-service" target="_blank"
-                          rel="noopener noreferrer">
-                          The terms of service
-                        </a>
-                      </div>
-                    </div>
-                    <div className={styles.btnFlexEnd}>
-                      <button type='button' onClick={handleSubmitSignUp} className={`${styles.btnSuccessHomeSignIn}`}>Sign Up</button>
-                    </div>
-                  </FormLayout>
-                </Form>
+                  )
+                 }
               </div>
-            )
-          }
+           </div>
         </Modal.Section>
       </div>
     </Modal>

@@ -39,7 +39,7 @@ const LoginFormOnHub: React.FC<LoginFormProps> = ({
   setUserData,
   myshopifyDomain,
 }) => {
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailPattern =  /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const [checkEmail, setCheckEmail] = useState('');
   const [checkPassword, setCheckPassword] = useState('');
 
@@ -62,6 +62,9 @@ const LoginFormOnHub: React.FC<LoginFormProps> = ({
     setPassword(text);
     if(text == null || text == '' || text == undefined){
       setCheckPassword('Password information cannot be left blank, please enter it again');
+    }
+    else if(text.length < 5 || text.length > 50) {
+      setCheckPassword('The password length should be between 5-50 characters, please try again!');
     }
     else{
       setCheckPassword('')
@@ -128,7 +131,7 @@ const LoginFormOnHub: React.FC<LoginFormProps> = ({
         showToast(data.message);
       }
     } catch (error) {
-      showToast('An error occurred while connecting to the server.')
+      showToast('Something went wrong, please try again!')
     }
   };
 
@@ -140,7 +143,7 @@ const LoginFormOnHub: React.FC<LoginFormProps> = ({
             value={email}
             onChange={(value) => validateField(value)}
             label="Email"
-            type="email"
+            type="text"
             autoComplete='on'
             placeholder='Email'
             error={checkEmail}
