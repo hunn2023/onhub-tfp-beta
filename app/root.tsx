@@ -30,7 +30,6 @@ export async function loader({request}: LoaderFunctionArgs) {
 
 export default function App() {
   const ShopInfo = useLoaderData<typeof loader>();
-
   const handleVisibilityChange = () => {
     const tabActive = !document.hidden;
     const shopInfo = localStorage.getItem('ShopInfo');
@@ -49,10 +48,9 @@ export default function App() {
         }
       }
     }
-
+ };
   useEffect(() => {
     document.addEventListener("visibilitychange", handleVisibilityChange);
-    
     const checkShopifyStore = async (shopifyStoreId : string) => {
       try {
         const response = await fetch(`${configOnHub.HOST_ONHUB_BE}/dynamic/api/shopify/checkShopifyStoreExist?shopifyStoreId=${shopifyStoreId}`, {
