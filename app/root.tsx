@@ -86,9 +86,9 @@ export default function App() {
     localStorage.setItem("ShopInfo", JSON.stringify(ShopInfoConvert));
     localStorage.setItem("ShopifyStoreId", shopifyStoreId ?? "");
 
-    return () => {
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-    };
+    // return () => {
+    //   document.removeEventListener("visibilitychange", handleVisibilityChange);
+    // };
   }, []);
 
 
