@@ -83,7 +83,7 @@ export default function App() {
       }
     }
     checkShopifyStore(shopifyStoreId);
-    localStorage.removeItem('ShopInfo');
+    localStorage.clear();
     localStorage.setItem("ShopInfo", JSON.stringify(ShopInfoConvert));
     localStorage.setItem("ShopifyStoreId", shopifyStoreId ?? "");
 
