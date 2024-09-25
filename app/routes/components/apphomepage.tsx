@@ -49,9 +49,6 @@ export default function Apphomepage({ shop }: ShopInfoProps)
         setNameStore(name ?? "");
         setMyshopifyDomain(domain ?? "");
       }
-      else{
-        console.log('shopInfo undefined or null');
-      }
       if (localChangeUser) {
         let parentLocalChangeUser = JSON.parse(localChangeUser) as User;
         let dataNow = new Date().getTime();

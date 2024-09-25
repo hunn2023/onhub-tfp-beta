@@ -17,11 +17,16 @@ interface SignUpModalProps {
 const SignUpModal: React.FC<SignUpModalProps> = (props) => {
   // Regular Expressions
   const phonePattern = /^\+?[0-9]{10,15}$/;
-  const fullNamePattern = /^[a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯưĂẵăÂâÊêÔôƠơƯưạảấầẩẫậắằẳẵặẹẻẽềếểễệịỉọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ\s]+$/;
+  const fullNamePattern = /^[a-zA-ZÀ-ỹ0-9]+(?: [a-zA-ZÀ-ỹ0-9]+)*\s?$/u;
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const roleUser = 'Business';
   const sourceRef = 'Shopify';
   const { shopifyStoreId, websiteUrl, nameStore } = props;
+
+  console.log("shopifyStoreId : " + shopifyStoreId);
+  console.log("websiteUrl : " + websiteUrl);
+  console.log("nameStore : " + nameStore);
+  
 
   const resetFields = () => {
     setEmail('');
@@ -68,7 +73,7 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
     validateField(confirmPassword, 'confirmPassword');
 
     let isValid = true;
-    
+
      // Kiểm tra lại các lỗi
      if (!fullName || checkFullName) {
       isValid = false;
@@ -112,7 +117,8 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
               shopifyStoreId: shopifyStoreId,
               websiteUrl: websiteUrl,
               nameStore : nameStore,
-              sourceRef : sourceRef
+              sourceRef : sourceRef,
+              phone  : phoneNumber
             }
           ),
 
