@@ -32,7 +32,7 @@ export async function loader({request}: LoaderFunctionArgs) {
 
 export default function Index() {
   const ShopInfo = useLoaderData<typeof loader>();
- 
+  console.log("ShopInfoIndex" + JSON.stringify(ShopInfo));
   useEffect(() => {
     const splitShopData = ShopInfo.shop.id.split('/');
     const shopifyStoreId = splitShopData[splitShopData.length - 1];
@@ -50,7 +50,7 @@ export default function Index() {
     localStorage.setItem("ShopInfo", JSON.stringify(ShopInfoConvert));
     localStorage.setItem("ShopifyStoreId", shopifyStoreId ?? "");
   }, []);
-  //
+
   return (
     <>
       <TitleOnHub
