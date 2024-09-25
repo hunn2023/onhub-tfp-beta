@@ -32,7 +32,6 @@ export async function loader({request}: LoaderFunctionArgs) {
 
 export default function Index() {
   const ShopInfo = useLoaderData<typeof loader>();
-  console.log("ShopInfoIndex" + JSON.stringify(ShopInfo));
   useEffect(() => {
     const splitShopData = ShopInfo.shop.id.split('/');
     const shopifyStoreId = splitShopData[splitShopData.length - 1];
@@ -58,7 +57,7 @@ export default function Index() {
         helpCenterLink={Constants.DEFAULT_HELPER_LINK}
       />
     <Page>
-        <Apphomepage/>
+        <Apphomepage shop={ShopInfo.shop}/>
     </Page>
   </>
   );

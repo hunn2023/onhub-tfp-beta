@@ -9,7 +9,16 @@ import LoginFormOnHub from "./UI/loginFormOnHub";
 import AsideOnHub from "./UI/asideOnHub";
 import MiddleCompartmentOnHub from "./UI/middleCompartmentOnHub";
 
-export default function Apphomepage() 
+type ShopInfoProps = {
+  shop: {
+    id: string;
+    name: string;
+    url: string;
+    myshopifyDomain: string;
+  };
+};
+
+export default function Apphomepage({ shop }: ShopInfoProps)
 {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -24,16 +33,18 @@ export default function Apphomepage()
     const [isUserDataAvailable, setIsUserDataAvailable] = useState(false);
   
     useEffect(() => {
-      let shopInfo = localStorage.getItem("ShopInfo") ?? "";
-      console.log("new shopInfo: " + shopInfo);
+      let shopInfo = shop;
+      console.log("shopInfo________________________" + JSON.stringify(shopInfo))
       let localChangeUser = localStorage.getItem('userDataKey');
-      let shopData;
       if (shopInfo) {
-        shopData = JSON.parse(shopInfo);
-        const url = shopData.shop.url;
-        const domain = shopData.shop.myshopifyDomain;
-        const name = shopData.shop.name;
-        setShopifyStoreId(shopData.shop.id ?? "");
+        const shopData = shopInfo;
+        const url = shopData.url;
+        const domain = shopData.myshopifyDomain;
+        const name = shopData.name;
+        const splitShopData = shopData.id.split('/');
+        const shopifyStoreId = splitShopData[splitShopData.length - 1];
+
+        setShopifyStoreId(shopifyStoreId ?? "");
         setUrl(url ?? "");
         setNameStore(name ?? "");
         setMyshopifyDomain(domain ?? "");
@@ -45,7 +56,6 @@ export default function Apphomepage()
         let parentLocalChangeUser = JSON.parse(localChangeUser) as User;
         let dataNow = new Date().getTime();
         let expPrefix = parentLocalChangeUser?.exp ?? dataNow;
-        shopData = JSON.parse(shopInfo);
         if (expPrefix < dataNow) {
           setUserData(parentLocalChangeUser);
           setEmail(parentLocalChangeUser.email);
@@ -69,7 +79,6 @@ export default function Apphomepage()
     const handleChangeAccount = () => {
       localStorage.removeItem('accessTokenKey');
       localStorage.removeItem('userDataKey');
-      localStorage.removeItem('ShopInfo')
       setEmail('');
       setPassword('');
       window.location.reload();
