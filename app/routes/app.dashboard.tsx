@@ -7,11 +7,13 @@ import styles from "./components/apphomePage.module.css";
 import Constants from "../routes/Core/Helpers/constants";
 import {MessageParentName} from "~/routes/_index/messageParentName";
 import TitleOnHub from "~/routes/components/UI/titleOnhub";
+import { Spinner } from "@shopify/polaris";
 
 export default function Dashboard() {
   const baseUrlFe = ConfigOnHub.HOST_MODULAR_FE;
   const [url, setUrl] = useState('');
   const navigate = useNavigate();
+  const [loadIframe, setLoadIframe] = useState(true);
 
   const handleEvent = (event: any) => {
     MessageParentName(event, navigate);
@@ -55,7 +57,18 @@ export default function Dashboard() {
         welcomeText={Constants.DASHBOARD}
         helpCenterLink={Constants.DEFAULT_HELPER_LINK}
       />
-      <iframe src={url} className={styles.screenIframe}/>
+      <div className={styles.container}>
+        {loadIframe && (
+          <div className={styles.spinnerOverlay}>
+            <Spinner accessibilityLabel="Loading" size="large" />
+          </div>
+        )}
+        <iframe
+          src={url}
+          className={styles.screenIframe}
+          onLoad={() => setLoadIframe(false)}
+        />
+      </div>
     </>
   );
 }

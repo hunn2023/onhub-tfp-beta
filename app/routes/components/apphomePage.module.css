@@ -278,3 +278,27 @@
   .Polaris-LegacyStack.Polaris-LegacyStack--spacingNone.Polaris-LegacyStack--alignmentCenter{
     color: #0061C1 !important;
   }
+
+
+  .container {
+  position: relative;
+}
+
+.spinnerOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 9999; 
+}
+
+.screenIframe {
+  width: 100%;
+  height: 100vh;
+  border: none;
+}

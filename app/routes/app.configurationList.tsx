@@ -7,11 +7,13 @@ import {useNavigate} from "@remix-run/react";
 import Constants from "./Core/Helpers/constants";
 import {MessageParentName} from "~/routes/_index/messageParentName";
 import TitleOnHub from "~/routes/components/UI/titleOnhub";
+import { Spinner } from "@shopify/polaris";
 
 export default function ConfigurationList() {
   const baseUrlFe = ConfigOnHub.HOST_MODULAR_FE;
   const [url, setUrl] = useState('');
   const navigate = useNavigate();
+  const [loadIframe, setLoadIframe] = useState(true);
 
   const handleEvent = (event: any) => {
     MessageParentName(event, navigate);
@@ -54,7 +56,18 @@ export default function ConfigurationList() {
         welcomeText={Constants.PREVENTION_CONFIGURATION}
         helpCenterLink={Constants.DEFAULT_HELPER_LINK}
       />
-      <iframe title="" src={url} className={styles.screenIframe}/>
+      <div className={styles.container}>
+        {loadIframe && (
+          <div className={styles.spinnerOverlay}>
+            <Spinner accessibilityLabel="Loading" size="large" />
+          </div>
+        )}
+        <iframe
+          src={url}
+          className={styles.screenIframe}
+          onLoad={() => setLoadIframe(false)}
+        />
+      </div>
     </>
   )
 }
