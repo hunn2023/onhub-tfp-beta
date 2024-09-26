@@ -36,14 +36,7 @@ export default function ConfigurationList() {
     const s = document.createElement('script');
     s.type = 'text/javascript';
     s.async = true;
-    s.innerHTML = `(function(d, s, id, t) {
-        if (d.getElementById(id)) return;
-        var js, fjs = d.getElementsByTagName(s)[0];
-        js = d.createElement(s);
-        js.id = id;
-        js.src = 'https://widget.oncustomer.asia/js/index.js?lang=en&token=' + t;
-        fjs.parentNode.insertBefore(js, fjs);}
-      (document, 'script', 'oc-chat-widget-bootstrap', '32bab5cf62c5385d30d0e20422214aa5'));`
+    s.innerHTML = `window.$crisp=[];window.CRISP_WEBSITE_ID="23c2ece7-f74a-49f9-abf6-02ee23173b99";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();`
     document.body.appendChild(s);
 
     var script = document.createElement('script');
