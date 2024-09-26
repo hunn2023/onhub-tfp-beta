@@ -34,7 +34,6 @@ export default function Apphomepage({ shop }: ShopInfoProps)
 
   useEffect(() => {
     let shopInfo = shop;
-    console.log("shopInfo________________________" + JSON.stringify(shopInfo))
     let localChangeUser = localStorage.getItem('userDataKey');
     if (shopInfo) {
       const shopData = shopInfo;
@@ -63,9 +62,7 @@ export default function Apphomepage({ shop }: ShopInfoProps)
       setLoginSuccess(false);
       setIsUserDataAvailable(false);
     }
-    return () =>{
-      setLoadIframe(false)
-    }
+    setLoadIframe(false)
   }, []);
 
 
