@@ -108,21 +108,6 @@ const LoginFormOnHub: React.FC<LoginFormProps> = ({
       });
       const data = await response.json();
       if (response.ok) {
-
-        const domainWebShopifyResult = await fetch(configOnHub.HOST_MODULAR_BE + '/modular/api/setting/save-website-shopify', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            shopifyStoreId: shopifyStoreId,
-            domainWebShopify: myshopifyDomain
-          }),
-        });
-        const dataShopifyResult = await domainWebShopifyResult.json();
-        if (domainWebShopifyResult.ok) {
-           console.log(dataShopifyResult);
-        }
         const accessToken = data.data;
         const userInfos = decodeToken(accessToken);
         setUserData(userInfos);
