@@ -30,7 +30,7 @@ const MiddleCompartmentOnHub: React.FC<MiddleCompartmentOnHubProps> = (props) =>
                     objectFit: 'cover',
                     objectPosition: 'center',
                   }}
-                  src="images/img_Dashboard.png"
+                  src="~/../public/images/img_Dashboard.png"
                 />
               </div>
               <div className={styles.contentOnhubHalf}>
@@ -38,7 +38,8 @@ const MiddleCompartmentOnHub: React.FC<MiddleCompartmentOnHubProps> = (props) =>
                   <p className={styles.headerTitleText}>Dashboard</p>
                 </div>
                 <div className={styles.contentOnhubHalfDescription}>
-                  <span>Short description......</span>
+                  <span>Monitoring the performance</span>
+                  <span>of click fraud detection</span>
                 </div>
                 <div>
                   <button className={`${styles.btnSuccessHomeSignIn} ${!props.isUserDataAvailable ? styles.btnDisable : ''}`}  onClick={()=>handleNavigate(false)} disabled = {!props.isUserDataAvailable} >
@@ -61,7 +62,7 @@ const MiddleCompartmentOnHub: React.FC<MiddleCompartmentOnHubProps> = (props) =>
                     objectFit: 'cover',
                     objectPosition: 'center',
                   }}
-                  src="images/img_ConfigurationList.png"
+                  src="~/../public/images/img_ConfigurationList.png"
                 />
               </div>
               <div className={styles.contentOnhubHalf}>
@@ -69,7 +70,8 @@ const MiddleCompartmentOnHub: React.FC<MiddleCompartmentOnHubProps> = (props) =>
                   <p className={styles.headerTitleText}>TFP Configuration</p>
                 </div>
                 <div className={styles.contentOnhubHalfDescription}>
-                  <span>Short description......</span>
+                  <span>Adjusting click fraud </span>
+                  <span>detection settings</span>
                 </div>
                 <div>
                   <button className={`${styles.btnSuccessHomeSignIn} ${!props.isUserDataAvailable ? styles.btnDisable : ''}`} type="button" onClick={()=>handleNavigate(true)} disabled = {!props.isUserDataAvailable}>
