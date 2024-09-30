@@ -7,22 +7,32 @@ const AsideOnHub : React.FC = () => {
   return (
     <Card>
       <div className={styles.titleLeftOnhub}>
-        <h3 className={styles.titleLeftOnhub}>Success Stories</h3>
         <div className={styles.storyLeftCard}>
           <p className={styles.storyLeftDescription}>
-            Refy Beauty reached 2M+ users on TikTok with an engagement rate of 2%.
-            Overall, they experienced a 750% increase in organic revenue.
+          Thank you for your trust to use our product. We hope you enjoy your experience with OnHub!
           </p>
-          <p className={styles.hashtagsLeft}>#Beauty #2M+ Reach</p>
-          <a href="" className={styles.readMoreLeft}>Read story</a>
+          <p className={styles.storyLeftDescription}>
+            If you have any struggles while using OnHub, you can find suggested solutions or reach out to us for support in <a href='https://docs.novaonads.com/onhub/getting-started/about-platform' rel="noreferrer" target="_blank" className={styles.storyHref}> Help Center <img src="../../public/images/open_in_new.svg" alt="External Link Icon" className={styles.iconHref} /></a>
+          </p>
+        </div>
+        <div className={styles.storyLeftCard}>
+            <p className={styles.storyLeftDescription}>
+            Is your Tiktok advertising account not performing as expected? Are you having trouble with scaling up Tikok advertising budget? </p>
+            <p className={styles.storyLeftDescription}>
+            Tiktok Agency Account will be the perfect solution for   
+            </p>
+            <a href='https://s.novaonads.com/tiktok-agency-account' rel="noreferrer" target="_blank" className={styles.storyHref}> Discover more about our product <img src="../../public/images/open_in_new.svg" alt="External Link Icon" className={styles.iconHref} /></a>  
         </div>
         <div className={styles.storyLeftCard}>
           <p className={styles.storyLeftDescription}>
-            Refy Beauty reached 2M+ users on TikTok with an engagement rate of 2%.
-            Overall, they experienced a 750% increase in organic revenue.
+          With over 100,000 satisfied customers, we’ve helped generate hundreds of millions of dollars in revenue through optimizing Tikok advertising campaign, resulting in more than 900 million clicks and over 60 million conversions.  
           </p>
-          <p className={styles.hashtagsLeft}>#Beauty #2M+ Reach</p>
-          <a href="" className={styles.readMoreLeft}>Read story</a>
+          <a href='https://www.novaonads.com/our-products/tiktok-advertising/' rel="noreferrer" target="_blank" className={styles.storyHref}> Discover more about our service <img src="../../public/images/open_in_new.svg" alt="External Link Icon" className={styles.iconHref} /></a>
+        </div>
+        <div className={styles.storyLeftCard}>
+          <p className={styles.storyLeftDescription}>
+              <a href='https://www.novaonads.com/' rel="noreferrer" target="_blank" className={styles.storyHref}> Discover more about our work <img src="../../public/images/open_in_new.svg" alt="External Link Icon" className={styles.iconHref} /> </a>     
+          </p>
         </div>
       </div>
     </Card>

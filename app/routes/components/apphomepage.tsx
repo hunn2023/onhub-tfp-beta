@@ -62,7 +62,7 @@ export default function Apphomepage({ shop }: ShopInfoProps)
       setLoginSuccess(false);
       setIsUserDataAvailable(false);
     }
-    setLoadIframe(false)
+     setLoadIframe(false)
   }, []);
 
 
@@ -161,7 +161,7 @@ export default function Apphomepage({ shop }: ShopInfoProps)
             </Card>
             <MiddleCompartmentOnHub isUserDataAvailable= {isUserDataAvailable} />
           </Grid.Cell>
-          <Grid.Cell columnSpan={{ xs: 3, sm: 3, md: 3, lg: 4, xl: 4 }}>
+          <Grid.Cell columnSpan={{ xs: 6, sm: 6, md: 6, lg: 4, xl: 4 }}>
             <AsideOnHub />
           </Grid.Cell>
         </Grid>

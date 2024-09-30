@@ -3,7 +3,7 @@
 client_id = "ab779184c5024a1d8b9abf29e430bd1e"
 name = "OnHub Tiktok Fraud Prevention"
 handle = "onhub-tfp-beta"
-application_url = "https://legislative-alignment-isa-commodity.trycloudflare.com"
+application_url = "https://sets-issues-bool-offices.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://legislative-alignment-isa-commodity.trycloudflare.com/auth/callback",
-  "https://legislative-alignment-isa-commodity.trycloudflare.com/auth/shopify/callback",
-  "https://legislative-alignment-isa-commodity.trycloudflare.com/api/auth/callback"
+  "https://sets-issues-bool-offices.trycloudflare.com/auth/callback",
+  "https://sets-issues-bool-offices.trycloudflare.com/auth/shopify/callback",
+  "https://sets-issues-bool-offices.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

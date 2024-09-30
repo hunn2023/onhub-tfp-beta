@@ -22,12 +22,6 @@ const SignUpModal: React.FC<SignUpModalProps> = (props) => {
   const roleUser = 'Business';
   const sourceRef = 'Shopify';
   const { shopifyStoreId, websiteUrl, nameStore } = props;
-
-  console.log("shopifyStoreId : " + shopifyStoreId);
-  console.log("websiteUrl : " + websiteUrl);
-  console.log("nameStore : " + nameStore);
-  
-
   const resetFields = () => {
     setEmail('');
     setFullName('');

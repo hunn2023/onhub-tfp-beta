@@ -3,7 +3,7 @@ import styles from "~/routes/components/apphomePage.module.css";
 import React, {useEffect, useState} from "react";
 import ConfigOnHub from "~/routes/rootOnHubs/configOnhub";
 import {useLocation, useNavigate} from "@remix-run/react";
-import {User} from "~/routes/Core/services/userServices";
+import type {User} from "~/routes/Core/services/userServices";
 import {MessageParentName} from "~/routes/_index/messageParentName";
 import TitleOnHub from "~/routes/components/UI/titleOnhub";
 
@@ -25,14 +25,17 @@ export default function Setting() {
     const parsedDataUser = userData ? JSON.parse(userData) as User : null;
     const parsedNameStore = shopInfo ? JSON.parse(shopInfo) : null;
     const encodedNameStore = encodeURIComponent(parsedNameStore?.shop?.name ?? "");
+    const myshopifyDomain = encodeURIComponent(parsedNameStore?.shop?.myshopifyDomain ?? "");
+
+
     const shopifyStoreId = parsedNameStore?.shop?.id ?? "";
 
     if (redirectTo == "ConfigurationFraudPrevention"){
       setShowContent(true)
-      setUrl(`${baseUrlFe}/configuration/fraud/prevention?user_id=${parsedDataUser?.id ?? ""}&shopifyStoreId=${shopifyStoreId}&nameStore=${encodedNameStore}`)
+      setUrl(`${baseUrlFe}/configuration/fraud/prevention?user_id=${parsedDataUser?.id ?? ""}&shopifyStoreId=${shopifyStoreId}&nameStore=${encodedNameStore}&myshopifyDomain=${myshopifyDomain}`)
     }else if(redirectTo == "SettingFraudPrevention"){
       setShowContent(false)
-      setUrl(location.state.userSettingFraudPrevention + `&shopifyStoreId=${shopifyStoreId ?? ""}&nameStore=${encodedNameStore}`)
+      setUrl(location.state.userSettingFraudPrevention + `&shopifyStoreId=${shopifyStoreId ?? ""}&nameStore=${encodedNameStore}&myshopifyDomain=${myshopifyDomain}&domain`)
     }else{
       navigate('/app');
     }
