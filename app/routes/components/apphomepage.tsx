@@ -63,7 +63,7 @@ export default function Apphomepage({ shop }: ShopInfoProps)
       setIsUserDataAvailable(false);
     }
      setLoadIframe(false)
-  }, []);
+  }, [shop]);
 
 
   const handleForgetPassword = () => {

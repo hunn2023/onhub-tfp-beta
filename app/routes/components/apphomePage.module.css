@@ -346,7 +346,11 @@
     align-items: flex-end;
   }
 }
-@media (max-width: 430px) {
+@media (max-width: 26.875rem) {
+  .userCardOnhub{
+    width: 22rem !important; 
+    margin: 2.2rem 0; 
+  }
   .titleLeftOnhub{
     height: unset !important;
   }
@@ -358,15 +362,11 @@
     align-items: flex-end;
   }
 }
-
-/* Breakpoint cho các thiết bị Samsung với chiều rộng khoảng từ 360px đến 400px */
-@media (max-width: 400px) {
-  .titleLeftOnhub{
-    height: unset !important;
+@media (min-width: 18.5rem) and (max-width: 25rem) { /* 360px đến 400px */
+  .userCardOnhub{
+    width: 19.5rem !important; 
+    margin: 2.2rem 0 !important; 
   }
-}
-/* Breakpoints cho các thiết bị Samsung Galaxy S22 và S23 và iPhone 15 Pro Max */
-@media (min-width: 22.5rem) and (max-width: 25rem) { /* 360px đến 400px */
   .titleLeftOnhub{
     height: unset !important;
   }
@@ -379,3 +379,16 @@
   }
   
 }
+@media (min-width: 28.125rem) and (max-width: 34.375rem) { 
+  .userCardOnhub{
+    width: 22.5rem !important; 
+    margin: 2.2rem 0 !important; 
+  }
+}
+@media (min-width: 44.375rem) and (max-width: 56.25rem) { 
+  .userCardOnhub{
+    width: 27.5rem !important; 
+    margin: 3.2rem 3.5rem !important; 
+  }
+}
+
